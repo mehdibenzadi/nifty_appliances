@@ -24,6 +24,10 @@ import "select2";
 import "formvalidation";
 import "classset";
 import "utils";
+import "brfs";
+import "node";
+import "browserify";
+
 
 
 // Internal imports, e.g:

@@ -26,6 +26,8 @@
     "bootstrap-icons": "^1.2.1",
     "bootstrap-maxlength": "^1.10.0",
     "bootstrap-multiselectsplitter": "^1.0.4",
+    "brfs": "^2.0.2",
+    "browserify": "^17.0.0",
     "chalk": "^4.1.0",
     "chart.js": "^3.2.1",
     "classset": "^0.0.1",
