@@ -11,7 +11,7 @@ environment.plugins.prepend('Provide',
     jQuery: 'jquery',
     Popper: ['popper.js', 'default']
   })
-);
-const { environment } = require('@rails/webpacker')
+); 
+ 
 module.exports = environment
 

@@ -20,13 +20,14 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-import "../stylesheets/application"  
-
-/* import 'bootstrap/dist/js/bootstrap'
-import "bootstrap/dist/css/bootstrap"; */
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import '../plugins/plugins.bundle';
+import '../plugins/scripts.bundle';
+import '../plugins/landing';
+import '../plugins/pricing';
+import '../plugins/typedjs.bundle';
+import '../plugins/fslightbox.bundle';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
