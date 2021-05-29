@@ -6,6 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module NiftyAppliances
   class Application < Rails::Application
     config.generators do |generate|
@@ -15,7 +17,9 @@ module NiftyAppliances
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join("app", "assets", "js")
+    config.assets.paths << Rails.root.join("app", "assets", "plugins")
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

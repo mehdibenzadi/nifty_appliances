@@ -20,6 +20,11 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import "select2";
+import "formvalidation";
+import "classset";
+import "utils";
+
 
 // Internal imports, e.g:
 import '../plugins/plugins.bundle';
