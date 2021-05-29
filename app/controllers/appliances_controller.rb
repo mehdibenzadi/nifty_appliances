@@ -1,5 +1,9 @@
 class AppliancesController < ApplicationController
-  def add
+  def new
     @appliance = Appliance.new
+  end
+
+  def create
+    raise
   end
 end
