@@ -27,6 +27,9 @@ import "utils";
 import "brfs";
 import "node";
 import "browserify";
+import "popper.js";
+import "webpack";
+import "@popperjs/core";
 
 
 
