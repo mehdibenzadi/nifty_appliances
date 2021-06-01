@@ -4,6 +4,6 @@ class AppliancesController < ApplicationController
   end
 
   def update
-    raise
+    @appliance.update_attribute(:serial_number, newserialnumber)
   end
 end
