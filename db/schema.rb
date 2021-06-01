@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_06_01_183337) do
 
   # These are extensions that must be enabled in order to support this database
@@ -25,13 +26,13 @@ ActiveRecord::Schema.define(version: 2021_06_01_183337) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "type"
+    t.string "event_type"
     t.string "value"
     t.datetime "occurs_at"
-    t.string "appliance_serial_number"
+    t.string "serial_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["appliance_serial_number"], name: "index_events_on_appliance_serial_number"
+    t.index ["serial_number"], name: "index_events_on_serial_number"
   end
 
   create_table "permissions", force: :cascade do |t|
