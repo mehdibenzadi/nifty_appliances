@@ -22,5 +22,3 @@ class AppliancesController < ApplicationController
     params.require(:appliance).permit(:serial_number)
   end
 end
-
-
