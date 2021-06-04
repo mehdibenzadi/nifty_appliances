@@ -11,20 +11,7 @@
  * file per style scope.
  *
  *= require_self
-
+ *= require bootstrap/dist/css/bootstrap.css
  */
 
-@import "config/fonts";
-@import "config/colors";
-@import "config/bootstrap_variables";
-
-// Your CSS partials
-@import "bootstrap/dist/css/bootstrap.css";
-@import "components/plugins";
-@import "components/style";
-
-@import "components/index";
-@import "pages/index";
-
-
-
+@import "./application.css.scss";

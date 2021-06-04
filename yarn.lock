@@ -5966,6 +5966,11 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+sizzle@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/sizzle/-/sizzle-2.3.6.tgz#ecc604ba69e4848d879b6a7fcf5409a270c6c3ec"
+  integrity sha512-abtd95IkbcMAaYk1Lux4k9Xz6wnQqyLy2aco9HGJ8jVaCDEcc+ug0hW8RdV6aIre3ycWXxPdcX0u7QL/1UaSoA==
+
 smooth-scroll@^16.1.3:
   version "16.1.3"
   resolved "https://registry.yarnpkg.com/smooth-scroll/-/smooth-scroll-16.1.3.tgz#c5b68194b4186173f9f61065103ae4e26ce36885"
