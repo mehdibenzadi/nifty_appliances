@@ -205,7 +205,7 @@ var KTApp = function() {
                     options.suffix = element.getAttribute('data-kt-countup-suffix');
                 }
 
-                var count = new countUp.CountUp(element, value, options);
+                var count = new CountUp(element, value, options);
 
                 count.start();
 
