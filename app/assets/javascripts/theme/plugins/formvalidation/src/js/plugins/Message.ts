@@ -1,7 +1,7 @@
 /**
  * FormValidation (https://formvalidation.io)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 import {
@@ -170,16 +170,12 @@ export default class Message extends Plugin<MessageOptions> {
 
     private prepareElementContainer(field: string, element: HTMLElement, elements: HTMLElement[]): void {
         let container;
-        switch (true) {
-            case ('string' === typeof this.opts.container):
-                let selector = this.opts.container as string;
-                selector = '#' === selector.charAt(0) ? `[id="${selector.substring(1)}"]` : selector;
-                container = (this.core.getFormElement().querySelector(selector) as HTMLElement);
-                break;
 
-            default:
-                container = (this.opts.container as ContainerCallback)(field, element);
-                break;
+        if ('string' === typeof this.opts.container) {
+            const selector = '#' === this.opts.container.charAt(0) ? `[id="${this.opts.container.substring(1)}"]` : this.opts.container;
+            container = (this.core.getFormElement().querySelector(selector) as HTMLElement);
+        } else {
+            container = this.opts.container(field, element);
         }
 
         const message = document.createElement('div');

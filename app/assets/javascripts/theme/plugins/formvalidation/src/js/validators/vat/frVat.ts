@@ -1,7 +1,7 @@
 /**
  * FormValidation (https://formvalidation.io)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 import luhn from '../../algorithms/luhn';
@@ -24,10 +24,10 @@ export default function frVat(value: string) {
         };
     }
 
-    if (!luhn(v.substr(2))) {
+    if (v.substr(2, 4) !== '000') {
         return {
             meta: {},
-            valid: false,
+            valid: luhn(v.substr(2)),
         };
     }
 

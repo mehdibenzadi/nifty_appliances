@@ -34,6 +34,7 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
             _this.iconPlacedHandler = _this.onIconPlaced.bind(_this);
             _this.fieldAddedHandler = _this.onFieldAdded.bind(_this);
             _this.fieldRemovedHandler = _this.onFieldRemoved.bind(_this);
+            _this.messagePlacedHandler = _this.onMessagePlaced.bind(_this);
             return _this;
         }
         Framework.prototype.install = function () {
@@ -62,6 +63,7 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
                         return Message_1.default.getClosestContainer(element, groupEle, _this.opts.rowPattern);
                     },
                 }));
+                this.core.on('plugins.message.placed', this.messagePlacedHandler);
             }
         };
         Framework.prototype.uninstall = function () {
@@ -80,8 +82,12 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
                 .off('plugins.icon.placed', this.iconPlacedHandler)
                 .off('core.field.added', this.fieldAddedHandler)
                 .off('core.field.removed', this.fieldRemovedHandler);
+            if (this.opts.defaultMessageContainer) {
+                this.core.off('plugins.message.placed', this.messagePlacedHandler);
+            }
         };
         Framework.prototype.onIconPlaced = function (e) { };
+        Framework.prototype.onMessagePlaced = function (e) { };
         Framework.prototype.onFieldAdded = function (e) {
             var _this = this;
             var elements = e.elements;
@@ -180,24 +186,27 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
             }
         };
         Framework.prototype.onElementValidated = function (e) {
-            var _a, _b, _c;
+            var _a, _b;
             var _this = this;
             var elements = e.elements;
             var type = e.element.getAttribute('type');
             var element = ('radio' === type || 'checkbox' === type) ? elements[0] : e.element;
-            classSet_1.default(element, (_a = {},
-                _a[this.opts.eleValidClass] = e.valid,
-                _a[this.opts.eleInvalidClass] = !e.valid,
-                _a));
+            elements.forEach(function (ele) {
+                var _a;
+                classSet_1.default(ele, (_a = {},
+                    _a[_this.opts.eleValidClass] = e.valid,
+                    _a[_this.opts.eleInvalidClass] = !e.valid,
+                    _a));
+            });
             var groupEle = this.containers.get(element);
             if (groupEle) {
                 if (!e.valid) {
                     this.results.set(element, false);
-                    classSet_1.default(groupEle, (_b = {},
-                        _b[this.opts.rowInvalidClass] = true,
-                        _b[this.opts.rowValidatingClass] = false,
-                        _b[this.opts.rowValidClass] = false,
-                        _b));
+                    classSet_1.default(groupEle, (_a = {},
+                        _a[this.opts.rowInvalidClass] = true,
+                        _a[this.opts.rowValidatingClass] = false,
+                        _a[this.opts.rowValidClass] = false,
+                        _a));
                 }
                 else {
                     this.results.delete(element);
@@ -208,11 +217,11 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet", "../utils/c
                         }
                     });
                     if (isValid_1) {
-                        classSet_1.default(groupEle, (_c = {},
-                            _c[this.opts.rowInvalidClass] = false,
-                            _c[this.opts.rowValidatingClass] = false,
-                            _c[this.opts.rowValidClass] = true,
-                            _c));
+                        classSet_1.default(groupEle, (_b = {},
+                            _b[this.opts.rowInvalidClass] = false,
+                            _b[this.opts.rowValidatingClass] = false,
+                            _b[this.opts.rowValidClass] = true,
+                            _b));
                     }
                 }
             }

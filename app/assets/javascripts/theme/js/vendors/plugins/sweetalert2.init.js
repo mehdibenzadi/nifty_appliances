@@ -1,5 +1,10 @@
 "use strict";
-// Set defaults
+
+//
+// SweetAlert2 Initialization
+//
+
+// Set Defaults
 swal.mixin({
 	width: 400,
 	heightAuto: false,

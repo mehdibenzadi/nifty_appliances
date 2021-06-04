@@ -24,6 +24,7 @@ define(["require", "exports", "../../utils/isValidDate"], function (require, exp
                 for (i = 0; i < 8; i++) {
                     sum += parseInt(v.charAt(i), 10) * (i + 3);
                 }
+                sum = sum % 11;
             }
             sum = sum % 10;
             return {

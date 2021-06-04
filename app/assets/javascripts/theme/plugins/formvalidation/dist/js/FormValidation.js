@@ -1,7 +1,7 @@
 /**
- * FormValidation (https://formvalidation.io), v1.7.0 (71bbaaa)
+ * FormValidation (https://formvalidation.io), v1.8.0 (ac47618)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 (function (global, factory) {
@@ -1494,11 +1494,11 @@
             break;
 
           case !!r$1:
-            m = r(s.l10n ? n.message || s.l10n.stringLength.more : n.message, "".concat(parseInt(r$1, 10) - 1));
+            m = r(s.l10n ? n.message || s.l10n.stringLength.more : n.message, "".concat(parseInt(r$1, 10)));
             break;
 
           case !!l:
-            m = r(s.l10n ? n.message || s.l10n.stringLength.less : n.message, "".concat(parseInt(l, 10) + 1));
+            m = r(s.l10n ? n.message || s.l10n.stringLength.less : n.message, "".concat(parseInt(l, 10)));
             break;
         }
 
@@ -3058,16 +3058,12 @@
       value: function prepareElementContainer(e, s, i) {
         var a;
 
-        switch (true) {
-          case "string" === typeof this.opts.container:
-            var _t2 = this.opts.container;
-            _t2 = "#" === _t2.charAt(0) ? "[id=\"".concat(_t2.substring(1), "\"]") : _t2;
-            a = this.core.getFormElement().querySelector(_t2);
-            break;
+        if ("string" === typeof this.opts.container) {
+          var _e2 = "#" === this.opts.container.charAt(0) ? "[id=\"".concat(this.opts.container.substring(1), "\"]") : this.opts.container;
 
-          default:
-            a = this.opts.container(e, s);
-            break;
+          a = this.core.getFormElement().querySelector(_e2);
+        } else {
+          a = this.opts.container(e, s);
         }
 
         var l = document.createElement("div");
@@ -3146,12 +3142,12 @@
         var i = "radio" === s || "checkbox" === s ? t[0] : e.element;
 
         if (this.messages.has(i)) {
-          var _t4 = this.messages.get(i);
+          var _t3 = this.messages.get(i);
 
-          var _s3 = _t4.querySelector("[data-field=\"".concat(e.field, "\"][data-validator=\"").concat(e.validator, "\"]"));
+          var _s3 = _t3.querySelector("[data-field=\"".concat(e.field, "\"][data-validator=\"").concat(e.validator, "\"]"));
 
           if (_s3) {
-            _t4.removeChild(_s3);
+            _t3.removeChild(_s3);
           }
         }
       }
@@ -3163,12 +3159,12 @@
         var i = "radio" === s || "checkbox" === s ? t[0] : e.element;
 
         if (this.messages.has(i)) {
-          var _t5 = this.messages.get(i);
+          var _t4 = this.messages.get(i);
 
-          var _s4 = [].slice.call(_t5.querySelectorAll("[data-field=\"".concat(e.field, "\"]")));
+          var _s4 = [].slice.call(_t4.querySelectorAll("[data-field=\"".concat(e.field, "\"]")));
 
           _s4.forEach(function (e) {
-            _t5.removeChild(e);
+            _t4.removeChild(e);
           });
         }
       }
@@ -3223,6 +3219,7 @@
       _this.iconPlacedHandler = _this.onIconPlaced.bind(_assertThisInitialized(_this));
       _this.fieldAddedHandler = _this.onFieldAdded.bind(_assertThisInitialized(_this));
       _this.fieldRemovedHandler = _this.onFieldRemoved.bind(_assertThisInitialized(_this));
+      _this.messagePlacedHandler = _this.onMessagePlaced.bind(_assertThisInitialized(_this));
       return _this;
     }
 
@@ -3240,10 +3237,11 @@
             clazz: this.opts.messageClass,
             container: function container(e, t) {
               var l = "string" === typeof _this2.opts.rowSelector ? _this2.opts.rowSelector : _this2.opts.rowSelector(e, t);
-              var o = t$h(t, l);
-              return s$5.getClosestContainer(t, o, _this2.opts.rowPattern);
+              var a = t$h(t, l);
+              return s$5.getClosestContainer(t, a, _this2.opts.rowPattern);
             }
           }));
+          this.core.on("plugins.message.placed", this.messagePlacedHandler);
         }
       }
     }, {
@@ -3255,10 +3253,17 @@
         this.containers.clear();
         c(this.core.getFormElement(), (_t2 = {}, _defineProperty(_t2, this.opts.formClass, false), _defineProperty(_t2, "fv-plugins-framework", false), _t2));
         this.core.off("core.element.ignored", this.elementIgnoredHandler).off("core.element.validating", this.elementValidatingHandler).off("core.element.validated", this.elementValidatedHandler).off("core.element.notvalidated", this.elementNotValidatedHandler).off("plugins.icon.placed", this.iconPlacedHandler).off("core.field.added", this.fieldAddedHandler).off("core.field.removed", this.fieldRemovedHandler);
+
+        if (this.opts.defaultMessageContainer) {
+          this.core.off("plugins.message.placed", this.messagePlacedHandler);
+        }
       }
     }, {
       key: "onIconPlaced",
       value: function onIconPlaced(e) {}
+    }, {
+      key: "onMessagePlaced",
+      value: function onMessagePlaced(e) {}
     }, {
       key: "onFieldAdded",
       value: function onFieldAdded(e) {
@@ -3317,13 +3322,13 @@
       key: "prepareElementContainer",
       value: function prepareElementContainer(e, i) {
         var l = "string" === typeof this.opts.rowSelector ? this.opts.rowSelector : this.opts.rowSelector(e, i);
-        var o = t$h(i, l);
+        var a = t$h(i, l);
 
-        if (o !== i) {
+        if (a !== i) {
           var _t5;
 
-          c(o, (_t5 = {}, _defineProperty(_t5, this.opts.rowClasses, true), _defineProperty(_t5, "fv-plugins-icon-container", true), _t5));
-          this.containers.set(i, o);
+          c(a, (_t5 = {}, _defineProperty(_t5, this.opts.rowClasses, true), _defineProperty(_t5, "fv-plugins-icon-container", true), _t5));
+          this.containers.set(i, a);
         }
       }
     }, {
@@ -3332,12 +3337,12 @@
         var s = e.elements;
         var i = e.element.getAttribute("type");
         var l = "radio" === i || "checkbox" === i ? s[0] : e.element;
-        var o = this.containers.get(l);
+        var a = this.containers.get(l);
 
-        if (o) {
+        if (a) {
           var _t6;
 
-          c(o, (_t6 = {}, _defineProperty(_t6, this.opts.rowInvalidClass, false), _defineProperty(_t6, this.opts.rowValidatingClass, true), _defineProperty(_t6, this.opts.rowValidClass, false), _t6));
+          c(a, (_t6 = {}, _defineProperty(_t6, this.opts.rowInvalidClass, false), _defineProperty(_t6, this.opts.rowValidatingClass, true), _defineProperty(_t6, this.opts.rowValidClass, false), _t6));
         }
       }
     }, {
@@ -3358,37 +3363,40 @@
         var i = e.getAttribute("type");
         var l = "radio" === i || "checkbox" === i ? s[0] : e;
         c(l, (_t7 = {}, _defineProperty(_t7, this.opts.eleValidClass, false), _defineProperty(_t7, this.opts.eleInvalidClass, false), _t7));
-        var o = this.containers.get(l);
+        var a = this.containers.get(l);
 
-        if (o) {
+        if (a) {
           var _t8;
 
-          c(o, (_t8 = {}, _defineProperty(_t8, this.opts.rowInvalidClass, false), _defineProperty(_t8, this.opts.rowValidatingClass, false), _defineProperty(_t8, this.opts.rowValidClass, false), _t8));
+          c(a, (_t8 = {}, _defineProperty(_t8, this.opts.rowInvalidClass, false), _defineProperty(_t8, this.opts.rowValidatingClass, false), _defineProperty(_t8, this.opts.rowValidClass, false), _t8));
         }
       }
     }, {
       key: "onElementValidated",
       value: function onElementValidated(e) {
-        var _t9,
-            _this6 = this;
+        var _this6 = this;
 
         var s = e.elements;
         var i = e.element.getAttribute("type");
         var l = "radio" === i || "checkbox" === i ? s[0] : e.element;
-        c(l, (_t9 = {}, _defineProperty(_t9, this.opts.eleValidClass, e.valid), _defineProperty(_t9, this.opts.eleInvalidClass, !e.valid), _t9));
-        var o = this.containers.get(l);
+        s.forEach(function (s) {
+          var _t9;
 
-        if (o) {
+          c(s, (_t9 = {}, _defineProperty(_t9, _this6.opts.eleValidClass, e.valid), _defineProperty(_t9, _this6.opts.eleInvalidClass, !e.valid), _t9));
+        });
+        var a = this.containers.get(l);
+
+        if (a) {
           if (!e.valid) {
             var _t10;
 
             this.results.set(l, false);
-            c(o, (_t10 = {}, _defineProperty(_t10, this.opts.rowInvalidClass, true), _defineProperty(_t10, this.opts.rowValidatingClass, false), _defineProperty(_t10, this.opts.rowValidClass, false), _t10));
+            c(a, (_t10 = {}, _defineProperty(_t10, this.opts.rowInvalidClass, true), _defineProperty(_t10, this.opts.rowValidatingClass, false), _defineProperty(_t10, this.opts.rowValidClass, false), _t10));
           } else {
             this.results["delete"](l);
             var _e2 = true;
             this.containers.forEach(function (t, s) {
-              if (t === o && _this6.results.get(s) === false) {
+              if (t === a && _this6.results.get(s) === false) {
                 _e2 = false;
               }
             });
@@ -3396,7 +3404,7 @@
             if (_e2) {
               var _t11;
 
-              c(o, (_t11 = {}, _defineProperty(_t11, this.opts.rowInvalidClass, false), _defineProperty(_t11, this.opts.rowValidatingClass, false), _defineProperty(_t11, this.opts.rowValidClass, true), _t11));
+              c(a, (_t11 = {}, _defineProperty(_t11, this.opts.rowInvalidClass, false), _defineProperty(_t11, this.opts.rowValidatingClass, false), _defineProperty(_t11, this.opts.rowValidClass, true), _t11));
             }
           }
         }
@@ -3865,8 +3873,8 @@
           var _i = t.element.getAttribute("type");
 
           var s = "radio" === _i || "checkbox" === _i ? _e2[0] : t.element;
-          var l = typeof t.result.message === "string" ? t.result.message : t.result.message[this.core.getLocale()];
-          this.messages.set(s, l);
+          var o = typeof t.result.message === "string" ? t.result.message : t.result.message[this.core.getLocale()];
+          this.messages.set(s, o);
         }
       }
     }, {
@@ -3899,60 +3907,65 @@
         c(this.tip, {
           "fv-plugins-tooltip--hide": false
         });
-        this.tip.innerHTML = "<span class=\"fv-plugins-tooltip__content\">".concat(this.messages.get(t), "</span>");
+        this.tip.innerHTML = "<div class=\"fv-plugins-tooltip__content\">".concat(this.messages.get(t), "</div>");
         var s = i.target;
-        var l = s.getBoundingClientRect();
-        var o = 0;
-        var n = 0;
+        var o = s.getBoundingClientRect();
+
+        var _this$tip$getBounding = this.tip.getBoundingClientRect(),
+            l = _this$tip$getBounding.height,
+            n = _this$tip$getBounding.width;
+
+        var a = 0;
+        var d = 0;
 
         switch (this.opts.placement) {
-          case "top":
-          default:
-            o = l.top - l.height;
-            n = l.left + l.width / 2 - this.tip.clientWidth / 2;
-            break;
-
-          case "top-left":
-            o = l.top - l.height;
-            n = l.left;
-            break;
-
-          case "top-right":
-            o = l.top - l.height;
-            n = l.left + l.width - this.tip.clientWidth;
-            break;
-
           case "bottom":
-            o = l.top + l.height;
-            n = l.left + l.width / 2 - this.tip.clientWidth / 2;
+            a = o.top + o.height;
+            d = o.left + o.width / 2 - n / 2;
             break;
 
           case "bottom-left":
-            o = l.top + l.height;
-            n = l.left;
+            a = o.top + o.height;
+            d = o.left;
             break;
 
           case "bottom-right":
-            o = l.top + l.height;
-            n = l.left + l.width - this.tip.clientWidth;
+            a = o.top + o.height;
+            d = o.left + o.width - n;
             break;
 
           case "left":
-            o = l.top + l.height / 2 - this.tip.clientHeight / 2;
-            n = l.left - this.tip.clientWidth;
+            a = o.top + o.height / 2 - l / 2;
+            d = o.left - n;
             break;
 
           case "right":
-            o = l.top + l.height / 2 - this.tip.clientHeight / 2;
-            n = l.left + l.width;
+            a = o.top + o.height / 2 - l / 2;
+            d = o.left + o.width;
+            break;
+
+          case "top-left":
+            a = o.top - l;
+            d = o.left;
+            break;
+
+          case "top-right":
+            a = o.top - l;
+            d = o.left + o.width - n;
+            break;
+
+          case "top":
+          default:
+            a = o.top - l;
+            d = o.left + o.width / 2 - n / 2;
             break;
         }
 
-        var a = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        var d = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
-        o = o + a;
-        n = n + d;
-        this.tip.setAttribute("style", "top: ".concat(o, "px; left: ").concat(n, "px"));
+        var c$1 = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var r = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+        a = a + c$1;
+        d = d + r;
+        this.tip.setAttribute("style", "top: ".concat(a, "px; left: ").concat(d, "px"));
       }
     }, {
       key: "hide",

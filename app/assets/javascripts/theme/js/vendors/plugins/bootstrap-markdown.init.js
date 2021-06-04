@@ -1,4 +1,9 @@
 "use strict";
+
+//
+// Markdown Initialization
+//
+
 $.fn.markdown.defaults.iconlibrary = 'fa';
 $.fn.markdown.defaults.buttons[0][0]['data'][2]['icon']['fa'] = 'fa fa-heading';
 $.fn.markdown.defaults.buttons[0][1]['data'][1]['icon']['fa'] = 'fa fa-image';

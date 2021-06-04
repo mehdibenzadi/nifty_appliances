@@ -106,15 +106,12 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet"], function (
         };
         Message.prototype.prepareElementContainer = function (field, element, elements) {
             var container;
-            switch (true) {
-                case ('string' === typeof this.opts.container):
-                    var selector = this.opts.container;
-                    selector = '#' === selector.charAt(0) ? "[id=\"" + selector.substring(1) + "\"]" : selector;
-                    container = this.core.getFormElement().querySelector(selector);
-                    break;
-                default:
-                    container = this.opts.container(field, element);
-                    break;
+            if ('string' === typeof this.opts.container) {
+                var selector = '#' === this.opts.container.charAt(0) ? "[id=\"" + this.opts.container.substring(1) + "\"]" : this.opts.container;
+                container = this.core.getFormElement().querySelector(selector);
+            }
+            else {
+                container = this.opts.container(field, element);
             }
             var message = document.createElement('div');
             container.appendChild(message);
