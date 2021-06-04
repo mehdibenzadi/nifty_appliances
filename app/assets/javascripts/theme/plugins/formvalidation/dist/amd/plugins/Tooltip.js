@@ -104,44 +104,45 @@ define(["require", "exports", "../core/Plugin", "../utils/classSet"], function (
             classSet_1.default(this.tip, {
                 'fv-plugins-tooltip--hide': false,
             });
-            this.tip.innerHTML = "<span class=\"fv-plugins-tooltip__content\">" + this.messages.get(ele) + "</span>";
+            this.tip.innerHTML = "<div class=\"fv-plugins-tooltip__content\">" + this.messages.get(ele) + "</div>";
             var icon = e.target;
-            var rect = icon.getBoundingClientRect();
+            var targetRect = icon.getBoundingClientRect();
+            var _a = this.tip.getBoundingClientRect(), height = _a.height, width = _a.width;
             var top = 0;
             var left = 0;
             switch (this.opts.placement) {
-                case 'top':
-                default:
-                    top = rect.top - rect.height;
-                    left = rect.left + rect.width / 2 - this.tip.clientWidth / 2;
-                    break;
-                case 'top-left':
-                    top = rect.top - rect.height;
-                    left = rect.left;
-                    break;
-                case 'top-right':
-                    top = rect.top - rect.height;
-                    left = rect.left + rect.width - this.tip.clientWidth;
-                    break;
                 case 'bottom':
-                    top = rect.top + rect.height;
-                    left = rect.left + rect.width / 2 - this.tip.clientWidth / 2;
+                    top = targetRect.top + targetRect.height;
+                    left = targetRect.left + targetRect.width / 2 - width / 2;
                     break;
                 case 'bottom-left':
-                    top = rect.top + rect.height;
-                    left = rect.left;
+                    top = targetRect.top + targetRect.height;
+                    left = targetRect.left;
                     break;
                 case 'bottom-right':
-                    top = rect.top + rect.height;
-                    left = rect.left + rect.width - this.tip.clientWidth;
+                    top = targetRect.top + targetRect.height;
+                    left = targetRect.left + targetRect.width - width;
                     break;
                 case 'left':
-                    top = rect.top + rect.height / 2 - this.tip.clientHeight / 2;
-                    left = rect.left - this.tip.clientWidth;
+                    top = targetRect.top + targetRect.height / 2 - height / 2;
+                    left = targetRect.left - width;
                     break;
                 case 'right':
-                    top = rect.top + rect.height / 2 - this.tip.clientHeight / 2;
-                    left = rect.left + rect.width;
+                    top = targetRect.top + targetRect.height / 2 - height / 2;
+                    left = targetRect.left + targetRect.width;
+                    break;
+                case 'top-left':
+                    top = targetRect.top - height;
+                    left = targetRect.left;
+                    break;
+                case 'top-right':
+                    top = targetRect.top - height;
+                    left = targetRect.left + targetRect.width - width;
+                    break;
+                case 'top':
+                default:
+                    top = targetRect.top - height;
+                    left = targetRect.left + targetRect.width / 2 - width / 2;
                     break;
             }
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;

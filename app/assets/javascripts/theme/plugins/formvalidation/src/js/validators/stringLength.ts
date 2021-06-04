@@ -1,7 +1,7 @@
 /**
  * FormValidation (https://formvalidation.io)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 import { Localization, ValidateInput, ValidateOptions, ValidateResult } from '../core/Core';
@@ -86,14 +86,14 @@ export default function stringLength() {
                 case (!!min):
                     msg = format(
                         input.l10n ? opts.message || input.l10n.stringLength.more : opts.message,
-                        `${(parseInt(min, 10) - 1)}`,
+                        `${(parseInt(min, 10))}`,
                     );
                     break;
 
                 case (!!max):
                     msg = format(
                         input.l10n ? opts.message || input.l10n.stringLength.less : opts.message,
-                        `${(parseInt(max, 10) + 1)}`,
+                        `${(parseInt(max, 10))}`,
                     );
                     break;
 

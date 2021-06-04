@@ -1,7 +1,7 @@
 /**
  * FormValidation (https://formvalidation.io)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 import {
@@ -15,7 +15,7 @@ import Plugin from '../core/Plugin';
 import classSet from '../utils/classSet';
 import closest from '../utils/closest';
 import { IconPlacedEvent } from './Icon';
-import Message from './Message';
+import Message, { MessagePlacedEvent } from './Message';
 
 type RowSelector = (field: string, element: HTMLElement) => string;
 
@@ -46,6 +46,7 @@ export default class Framework extends Plugin<FrameworkOptions> {
     private iconPlacedHandler: (e: IconPlacedEvent) => void;
     private fieldAddedHandler: (e: DynamicFieldEvent) => void;
     private fieldRemovedHandler: (e: DynamicFieldEvent) => void;
+    private messagePlacedHandler: (e: MessagePlacedEvent) => void;
 
     constructor(opts?: FrameworkOptions) {
         super(opts);
@@ -64,6 +65,7 @@ export default class Framework extends Plugin<FrameworkOptions> {
         this.iconPlacedHandler = this.onIconPlaced.bind(this);
         this.fieldAddedHandler = this.onFieldAdded.bind(this);
         this.fieldRemovedHandler = this.onFieldRemoved.bind(this);
+        this.messagePlacedHandler = this.onMessagePlaced.bind(this);
     }
 
     public install(): void {
@@ -91,6 +93,8 @@ export default class Framework extends Plugin<FrameworkOptions> {
                     return Message.getClosestContainer(element, groupEle, this.opts.rowPattern);
                 },
             }));
+
+            this.core.on('plugins.message.placed', this.messagePlacedHandler);
         }
     }
 
@@ -110,9 +114,14 @@ export default class Framework extends Plugin<FrameworkOptions> {
             .off('plugins.icon.placed', this.iconPlacedHandler)
             .off('core.field.added', this.fieldAddedHandler)
             .off('core.field.removed', this.fieldRemovedHandler);
+
+        if (this.opts.defaultMessageContainer) {
+            this.core.off('plugins.message.placed', this.messagePlacedHandler);
+        }
     }
 
     protected onIconPlaced(e: IconPlacedEvent): void {} // tslint:disable-line:no-empty
+    protected onMessagePlaced(e: MessagePlacedEvent): void {} // tslint:disable-line:no-empty
 
     private onFieldAdded(e: DynamicFieldEvent): void {
         const elements = e.elements;
@@ -219,9 +228,12 @@ export default class Framework extends Plugin<FrameworkOptions> {
         const type = e.element.getAttribute('type');
         const element = ('radio' === type || 'checkbox' === type) ? elements[0] : e.element;
 
-        classSet(element, {
-            [this.opts.eleValidClass]: e.valid,
-            [this.opts.eleInvalidClass]: !e.valid,
+        // Set the valid or invalid class for all elements
+        elements.forEach(ele => {
+            classSet(ele, {
+                [this.opts.eleValidClass]: e.valid,
+                [this.opts.eleInvalidClass]: !e.valid,
+            });
         });
 
         const groupEle = this.containers.get(element);

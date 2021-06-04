@@ -1,7 +1,7 @@
 /**
- * FormValidation (https://formvalidation.io), v1.7.0 (71bbaaa)
+ * FormValidation (https://formvalidation.io), v1.8.0 (ac47618)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 (function (global, factory) {
@@ -111,53 +111,21 @@
     };
   }
 
-  function _superPropBase(object, property) {
-    while (!Object.prototype.hasOwnProperty.call(object, property)) {
-      object = _getPrototypeOf(object);
-      if (object === null) break;
-    }
-
-    return object;
-  }
-
-  function _get(target, property, receiver) {
-    if (typeof Reflect !== "undefined" && Reflect.get) {
-      _get = Reflect.get;
-    } else {
-      _get = function _get(target, property, receiver) {
-        var base = _superPropBase(target, property);
-
-        if (!base) return;
-        var desc = Object.getOwnPropertyDescriptor(base, property);
-
-        if (desc.get) {
-          return desc.get.call(receiver);
-        }
-
-        return desc.value;
-      };
-    }
-
-    return _get(target, property, receiver || target);
-  }
-
   var e = FormValidation.utils.classSet;
 
-  var s = FormValidation.utils.hasClass;
+  var t = FormValidation.utils.hasClass;
 
-  var t = FormValidation.plugins.Framework;
+  var n = FormValidation.plugins.Framework;
 
-  var n = /*#__PURE__*/function (_t) {
-    _inherits(n, _t);
+  var s = /*#__PURE__*/function (_n) {
+    _inherits(s, _n);
 
-    var _super = _createSuper(n);
+    var _super = _createSuper(s);
 
-    function n(e) {
-      var _this;
+    function s(e) {
+      _classCallCheck(this, s);
 
-      _classCallCheck(this, n);
-
-      _this = _super.call(this, Object.assign({}, {
+      return _super.call(this, Object.assign({}, {
         formClass: "fv-plugins-semantic",
         messageClass: "ui pointing red label",
         rowInvalidClass: "error",
@@ -165,58 +133,42 @@
         rowSelector: ".fields",
         rowValidClass: "fv-has-success"
       }, e));
-      _this.messagePlacedHandler = _this.onMessagePlaced.bind(_assertThisInitialized(_this));
-      return _this;
     }
 
-    _createClass(n, [{
-      key: "install",
-      value: function install() {
-        _get(_getPrototypeOf(n.prototype), "install", this).call(this);
-
-        this.core.on("plugins.message.placed", this.messagePlacedHandler);
-      }
-    }, {
-      key: "uninstall",
-      value: function uninstall() {
-        _get(_getPrototypeOf(n.prototype), "uninstall", this).call(this);
-
-        this.core.off("plugins.message.placed", this.messagePlacedHandler);
-      }
-    }, {
+    _createClass(s, [{
       key: "onIconPlaced",
-      value: function onIconPlaced(s) {
-        var t = s.element.getAttribute("type");
+      value: function onIconPlaced(t) {
+        var n = t.element.getAttribute("type");
 
-        if ("checkbox" === t || "radio" === t) {
-          var _t2 = s.element.parentElement;
-          e(s.iconElement, {
+        if ("checkbox" === n || "radio" === n) {
+          var _n2 = t.element.parentElement;
+          e(t.iconElement, {
             "fv-plugins-icon-check": true
           });
 
-          _t2.parentElement.insertBefore(s.iconElement, _t2.nextSibling);
+          _n2.parentElement.insertBefore(t.iconElement, _n2.nextSibling);
         }
       }
     }, {
       key: "onMessagePlaced",
       value: function onMessagePlaced(e) {
-        var t = e.element.getAttribute("type");
-        var n = e.elements.length;
+        var n = e.element.getAttribute("type");
+        var s = e.elements.length;
 
-        if (("checkbox" === t || "radio" === t) && n > 1) {
-          var l = e.elements[n - 1];
-          var a = l.parentElement;
+        if (("checkbox" === n || "radio" === n) && s > 1) {
+          var l = e.elements[s - 1];
+          var o = l.parentElement;
 
-          if (s(a, t) && s(a, "ui")) {
-            a.parentElement.insertBefore(e.messageElement, a.nextSibling);
+          if (t(o, n) && t(o, "ui")) {
+            o.parentElement.insertBefore(e.messageElement, o.nextSibling);
           }
         }
       }
     }]);
 
-    return n;
-  }(t);
+    return s;
+  }(n);
 
-  return n;
+  return s;
 
 })));

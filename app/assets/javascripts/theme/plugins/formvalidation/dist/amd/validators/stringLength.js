@@ -42,10 +42,10 @@ define(["require", "exports", "../utils/format"], function (require, exports, fo
                         msg = format_1.default(input.l10n ? opts.message || input.l10n.stringLength.between : opts.message, [min, max]);
                         break;
                     case (!!min):
-                        msg = format_1.default(input.l10n ? opts.message || input.l10n.stringLength.more : opts.message, "" + (parseInt(min, 10) - 1));
+                        msg = format_1.default(input.l10n ? opts.message || input.l10n.stringLength.more : opts.message, "" + (parseInt(min, 10)));
                         break;
                     case (!!max):
-                        msg = format_1.default(input.l10n ? opts.message || input.l10n.stringLength.less : opts.message, "" + (parseInt(max, 10) + 1));
+                        msg = format_1.default(input.l10n ? opts.message || input.l10n.stringLength.less : opts.message, "" + (parseInt(max, 10)));
                         break;
                     default:
                         break;

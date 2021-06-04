@@ -1,7 +1,7 @@
 /**
  * FormValidation (https://formvalidation.io)
  * The best validation library for JavaScript
- * (c) 2013 - 2020 Nguyen Huu Phuoc <me@phuoc.ng>
+ * (c) 2013 - 2021 Nguyen Huu Phuoc <me@phuoc.ng>
  */
 
 import classSet from '../utils/classSet';
@@ -11,8 +11,6 @@ import { IconPlacedEvent } from './Icon';
 import { MessagePlacedEvent } from './Message';
 
 export default class Semantic extends Framework {
-    private messagePlacedHandler: (e: MessagePlacedEvent) => void;
-
     constructor(opts?: FrameworkOptions) {
         super(Object.assign({}, {
             formClass: 'fv-plugins-semantic',
@@ -23,18 +21,6 @@ export default class Semantic extends Framework {
             rowSelector: '.fields',
             rowValidClass: 'fv-has-success',
         }, opts));
-
-        this.messagePlacedHandler = this.onMessagePlaced.bind(this);
-    }
-
-    public install(): void {
-        super.install();
-        this.core.on('plugins.message.placed', this.messagePlacedHandler);
-    }
-
-    public uninstall(): void {
-        super.uninstall();
-        this.core.off('plugins.message.placed', this.messagePlacedHandler);
     }
 
     protected onIconPlaced(e: IconPlacedEvent): void {
