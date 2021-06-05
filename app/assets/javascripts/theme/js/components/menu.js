@@ -548,8 +548,8 @@ var KTMenu = function(element, options) {
             reference = item;
         }
 
-        var popper = createPopper(reference, sub, _getDropdownPopperConfig(item));
-        /* var popper = Popper.createPopper(reference, sub, _getDropdownPopperConfig(item)); */
+        var popper = Popper.createPopper(reference, sub, _getDropdownPopperConfig(item));
+        // var popper = Popper.createPopper(reference, sub, _getDropdownPopperConfig(item)); 
         KTUtil.data(item).set('popper', popper);
     }
 
