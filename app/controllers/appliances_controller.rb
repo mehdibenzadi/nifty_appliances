@@ -5,6 +5,10 @@ class AppliancesController < ApplicationController
     @appliance = Appliance.new
   end
 
+  def index
+
+  end
+
   def link_user
     # trouver l'appliance qui correspond au serial number passé dans les params
     @appliance = Appliance.find_by(serial_number:appliance_params[:serial_number])

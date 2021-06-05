@@ -1,9 +1,0 @@
-<% content_for :id, "kt_body" %>
-<% content_for :class, "header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" %>
-<% content_for :style, "--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px" %>
-<% content_for :scripts do %>
-  <!-- <%= javascript_include_tag '//cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.js', 'data-turbolinks-track': 'reload' %> -->
-  <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag '//cdn.jsdelivr.net/npm/apexcharts', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js', 'data-turbolinks-track': 'reload' %>
-<% end %>

@@ -6,4 +6,3 @@
 //= require ./theme/plugins/formvalidation/dist/js/plugins/Bootstrap5.min.js
 //= require sizzle/dist/sizzle.min.js
 
-//= require @popperjs/core/dist/umd/popper.min
