@@ -3,3 +3,4 @@
 //= link landing.js
 //= link dashboard.js
 //= link application.css
+//= link signin.js
