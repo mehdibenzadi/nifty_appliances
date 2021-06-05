@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test application.js</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="https://res.cloudinary.com/df8y5fexl/image/upload/v1620334948/logo_sah_w4lqxy.png"/>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+  </head>
+
+  <body>
+  <%= render 'shared/navbar_wagon' %>
+  <div class='full-height'>
+    <%= yield %>
+  </div>
+  <%= render 'shared/footer_wagon' %>
+  </body>
+</html>
