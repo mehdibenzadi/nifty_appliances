@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   skip_before_action :verify_authenticity_token, :authenticate_user!, only:[:create]
   before_action :verify_serial, only:[:create]
+  # before_action :declare_view_type
   
   def create
     @event = Event.new(event_params)
@@ -19,4 +20,8 @@ class EventsController < ApplicationController
     def verify_serial
       head :unauthorized unless Appliance.find_by(serial_number: event_params[:serial_number])
     end
+
+    # def declare_view_type
+    #   @view_type = 1
+    # end
 end

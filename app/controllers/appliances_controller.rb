@@ -1,4 +1,6 @@
 class AppliancesController < ApplicationController
+  layout "appliance"
+
   def add
     @appliance = Appliance.new
   end
