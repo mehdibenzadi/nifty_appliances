@@ -1,6 +1,12 @@
 class AppliancesController < ApplicationController
+  layout "appliance"
+
   def add
     @appliance = Appliance.new
+  end
+
+  def index
+
   end
 
   def link_user
