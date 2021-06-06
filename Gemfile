@@ -22,6 +22,10 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Gems for Capristo
+gem 'ed25519', '~> 1.2', '>= 1.2.4'
+gem 'bcrypt_pbkdf', '~> 1.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -33,6 +37,12 @@ gem 'devise'
 # Sprockets GEM for Theme
 gem 'sprockets'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+# Gems to upload to server
+# gem 'capistrano', '~> 3.16'
+# gem 'capistrano-rails', '~> 1.4'
+# gem 'capistrano-passenger', '~> 0.2.0'
+# gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
@@ -62,6 +72,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :development, :production do
+  gem 'capistrano', '~> 3.16'
+  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
