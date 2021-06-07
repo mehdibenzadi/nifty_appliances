@@ -1,6 +1,6 @@
 
-//= require jquery
-//= require popper.js/dist/umd/popper
+// require jquery
+// require popper.js/dist/umd/popper
 // require bootstrap/dist/js/bootstrap.min
 
 //= require tiny-slider
