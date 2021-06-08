@@ -3,6 +3,7 @@
   <head>
     <title>Niftyapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="assets/media/logos/favicon.png" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -31,18 +32,15 @@
       </div>
     </div>
     <%= render "shared/activities" %>
-    <%= render "shared/chat" %>
     <%= render "shared/scrolltop" %>
-    <%= render "shared/invite_friend_modal" %>
     <%= render "shared/create_app_modal" %>
-    <%= render "shared/upgrade_plan_modal" %>
 
 
 
     <%= javascript_include_tag '//code.jquery.com/jquery-3.6.0.min.js', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag '//cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+  
     <%= content_for :scripts %>
   </body>
 </html>
