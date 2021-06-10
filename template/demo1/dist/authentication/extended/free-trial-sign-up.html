@@ -41,7 +41,7 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="d-flex flex-column">
 							<!--begin::Logo-->
 							<a href="index.html" class="mb-15">
-								<img alt="Logo" src="assets/media/logos/logo-2-dark.svg" class="h-50px" />
+								<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-2-dark.svg" class="h-50px" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
@@ -150,11 +150,11 @@ License: For each use you must have a valid license purchased only from above li
 		<!--end::Main-->
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="<%= request.base_url + "/" %>assets/plugins/global/plugins.bundle.js"></script>
+		<script src="<%= request.base_url + "/" %>assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="assets/js/custom/authentication/sign-up/free-trial.js"></script>
+		<script src="<%= request.base_url + "/" %>assets/js/custom/authentication/sign-up/free-trial.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
