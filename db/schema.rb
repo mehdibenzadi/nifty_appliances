@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_170932) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "type"
+    t.integer "family"
     t.index ["user_id"], name: "index_appliances_on_user_id"
   end
 
