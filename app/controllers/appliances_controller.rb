@@ -6,7 +6,7 @@ class AppliancesController < ApplicationController
   end
 
   def index
-
+    @appliances = current_user.appliances
   end
 
   def show 
