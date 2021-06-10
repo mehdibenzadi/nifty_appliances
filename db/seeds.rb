@@ -14,9 +14,18 @@ user = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :passw
 user = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
 puts 'Creating appliances...'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :type => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :type => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :type => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :type => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :type => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :type => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :type => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :type => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :type => '2 '
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :type => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :type => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :type => '3'
 
 puts 'Creating serial numbers...'
 SerialNumber.create!({ value: "1236589" })
