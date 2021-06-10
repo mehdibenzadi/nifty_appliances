@@ -21,3 +21,27 @@ SerialNumber.create!({
 SerialNumber.create!({
    value: "9068376"
 })
+SerialNumber.create!({
+   value: "9876543"
+})
+SerialNumber.create!({
+   value: "2846928"
+})
+SerialNumber.create!({
+   value: "1234567"
+})
+SerialNumber.create!({
+   value: "7654321"
+})
+SerialNumber.create!({
+   value: "1324354"
+})
+SerialNumber.create!({
+   value: "7564243"
+})
+SerialNumber.create!({
+   value: "0798645"
+})
+SerialNumber.create!({
+   value: "0687922"
+})
