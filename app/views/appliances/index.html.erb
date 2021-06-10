@@ -62,7 +62,9 @@ end
                 </div>
               </th>
               <td>
-                <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6"><%= appliance.model %></a>
+                <%= link_to appliance_path(appliance), { :class => 'text-dark fw-bolder text-hover-primary mb-1 fs-6' } do %>
+                <%= appliance.model %>
+                <% end %>
                 <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
