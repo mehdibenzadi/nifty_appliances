@@ -1,11 +1,36 @@
+<%
+def svgtourl(family) 
+  case family
+  when 1
+    "/assets/media/svg/family/001-dishwasher.svg"
+  when 2
+    "/assets/media/svg/family/002-washing-machine.svg"
+  else
+    "/assets/media/svg/family/003-fridge.svg"
+  end
+end
+%>
+<%
+def appliancefamily(family) 
+  case family
+  when 1
+    "Dishwasher"
+  when 2
+    "Washing Machine"
+  else
+    "Fridge"
+  end
+end
+%>
+
 <div class="col-xl-12">
   <!--begin::Tables Widget 1-->
   <div class="card card-xl-stretch mb-xl-8">
     <!--begin::Header-->
     <div class="card-header border-0 pt-5">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label fw-bolder fs-3 mb-1">Applicances List</span>
-        <span class="text-muted fw-bold fs-7">By database order</span>
+        <span class="card-label fw-bolder fs-3 mb-1">Your appliances</span>
+        <span class="text-muted fw-bold fs-7">Type - Serial Number - Status</span>
       </h3>
     </div>
     <!--end::Header-->
@@ -27,23 +52,24 @@
           <!--end::Table head-->
           <!--begin::Table body-->
           <tbody>
+            <% @appliances.each do |appliance| %>
             <tr>
               <th>
-                <div class="symbol symbol-50px me-2">
+                <div class="symbol symbol-60px me-2">
                   <span class="symbol-label">
-                    <img src="assets/media/svg/brand-logos/plurk.svg" class="h-50 align-self-center" alt="">
+                    <img src="<%= svgtourl(appliance.family) %>" class="h-60 align-self-center" alt="">
                   </span>
                 </div>
               </th>
               <td>
-                <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Top Authors</a>
-                <span class="text-muted fw-bold d-block fs-7">Successful Fellas</span>
+                <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6"><%= appliance.model %></a>
+                <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
                 <span class="badge badge-light-success fw-bold me-1">Online</span>
               </td>
               <td class="text-end">
-                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
+                <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary' } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
                   <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -55,9 +81,10 @@
                     </svg>
                   </span>
                   <!--end::Svg Icon-->
-                </a>
+                <% end %>
               </td>
             </tr>
+            <% end %>
           </tbody>
           <!--end::Table body-->
         </table>
