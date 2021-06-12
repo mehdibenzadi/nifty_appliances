@@ -87,3 +87,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Gemfile
 gem "sidekiq"
 gem "sidekiq-failures", "~> 1.0"
+gem 'sidekiq-scheduler', '~> 2.0', '>= 2.0.8'
