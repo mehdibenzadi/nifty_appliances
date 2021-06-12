@@ -21,6 +21,9 @@
         background-position: center center;
         background-size: cover;
         @include border-radius($border-radius);
+        img {
+            max-width: 60px;
+        }
     }
 
     // Badge
