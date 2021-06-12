@@ -14,6 +14,8 @@ set :user, "deploy"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
+SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
+SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
