@@ -49,6 +49,8 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 # gem 'capistrano-passenger', '~> 0.2.0'
 # gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
+gem 'capistrano-sidekiq', '~> 0.5.4'
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'

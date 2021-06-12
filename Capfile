@@ -36,6 +36,8 @@ require "capistrano/bundler"
 require "capistrano/rails"
 require "capistrano/passenger"
 require "capistrano/rbenv"
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit' #to require monit tasks # Only for capistrano3
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.6.6'
