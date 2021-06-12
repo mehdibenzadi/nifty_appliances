@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  require "sidekiq/web"
   devise_for :users
+
+  authenticate :user, ->(user) { user.email == "john@gmail.com" } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   devise_scope :user do
     authenticated do

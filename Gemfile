@@ -34,6 +34,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
 
+# Sidekiq + scheduler
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+gem 'sidekiq-scheduler', '~> 2.0', '>= 2.0.8'
+
 # Sprockets GEM for Theme
 gem 'sprockets'
 gem 'sprockets-rails', :require => 'sprockets/railtie'

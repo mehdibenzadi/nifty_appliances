@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
+      process_data(@event)
       head :ok
     else
       head :unprocessable_entity
