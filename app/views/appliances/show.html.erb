@@ -1,9 +1,11 @@
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
-    <div class="card-header border-0 pt-5">
+    <div class="card-header border-0 pt-5 w-50">
       <h3 class="card-title align-items-start flex-column">
-        <span class="card-label fw-bolder fs-3 mb-1"><%= @appliance.model %></span>
-        <span class="text-muted fw-bold fs-7"><%= @appliance.serial_number %></span>
+        <span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2"><img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span></span>
+		<%= link_to root_path do %>
+            <span class="text-italic fw-bold fs-7"><< Go back to the dashboard</span>
+            <% end %>
       </h3>
     </div>
     
