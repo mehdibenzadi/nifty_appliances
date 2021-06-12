@@ -19,4 +19,4 @@
     cron: '*/10 * * * * *'   # Runs once per minute
     class: StatusJob
     queue: default
-    description: "This job will check Online Status every 30 seconds"
+    description: "This job will check Online Status every 10 seconds"
