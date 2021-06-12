@@ -17,6 +17,8 @@ set :deploy_to, "/home/deploy/#{fetch :application}"
 SSHKit.config.command_map[:sidekiq] = "bundle exec sidekiq"
 SSHKit.config.command_map[:sidekiqctl] = "bundle exec sidekiqctl"
 
+set :sidekiq_monit_use_sudo, false
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 

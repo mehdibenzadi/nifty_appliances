@@ -71,7 +71,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'capistrano-sidekiq', '~> 0.5.4'
+  # gem 'capistrano-sidekiq', '~> 0.5.4'
 end
 
 group :test do
