@@ -5,27 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Appliance.destroy_all
+SerialNumber.destroy_all
+User.destroy_all
 
 puts 'Creating users...'
-user = User.create! :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => false
-user = User.create! :email => 'marylin@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => false
-user = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
-user = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+user1 = User.create! :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => false
+user2 = User.create! :email => 'marylin@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => false
+user3 = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+user4 = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
 puts 'Creating appliances...'
-appliance = Appliance.create! :model => 'BOSCH Série 8', :serial_number => 'SMV8YCX01E', :user_id => '1', :family => 1
-appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => '1', :family => 2
-appliance = Appliance.create! :model => 'BEKO Réfrigérateur', :serial_number => 'LLF07W15', :user_id => '1', :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :family => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :family => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '3', :family => '2 '
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :family => '3'
+appliance = Appliance.create! :model => 'BOSCH Série 8', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
+appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => user1.id, :family => 2
+appliance = Appliance.create! :model => 'BEKO Réfrigérateur', :serial_number => 'LLF07W15', :user_id => user1.id, :family => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user1.id, :family => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '1'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '2 '
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '3'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '2'
+appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '3'
 
 puts 'Creating serial numbers...'
 SerialNumber.create!({ value: "SMV8YCX01E" })
