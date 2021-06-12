@@ -1,7 +1,6 @@
 class DestroyExpiredSerialNumbersJob < ApplicationJob
-  queue_as :default
   def perform
     # TODO (1)
-    serial_numbers = SerialNumbers.where(created_at: 5)
+    serial_numbers = SerialNumber.where(created_at: 5.minutes.ago..Time.now).destroy_all
   end
 end
