@@ -1,20 +1,33 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class='container'>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap py-5">
+            <h3 class="text-center mb-0">Welcome back on Nifty</h3>
+            <p class="text-center">Sign in by entering the information below</p>
+						<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :email,
+                          required: false,
+                          autofocus: true,
+                          input_html: { autocomplete: "email", placeholder: "johndoe@gmail.com" } %>
+              <%= f.input :password,
+                          required: false,
+                          input_html: { autocomplete: "current-password" } %>
+              <%= f.input :remember_me,
+               as: :boolean if devise_mapping.rememberable? %>
+            </div>
+            <div class="form-actions text-center" style='margin-top: 20px;'>
+              <%= f.button :submit, 'Log in', class: 'btn btn-primary' %>
+            </div>
+            <% end %>
+	          <div class="w-100 text-center mt-4 text">
+              <%= render "devise/shared/links" %>
+	          </div>
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

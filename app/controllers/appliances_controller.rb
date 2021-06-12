@@ -6,7 +6,11 @@ class AppliancesController < ApplicationController
   end
 
   def index
+    @appliances = current_user.appliances
+  end
 
+  def show 
+    @appliance = Appliance.find(params[:id])
   end
 
   def link_user
