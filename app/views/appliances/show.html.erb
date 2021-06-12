@@ -7,156 +7,105 @@
       </h3>
     </div>
     
-    <div class="card-body py-3">
-      <div class="table-responsive">
-        <table class="table align-middle gs-0 gy-5">
+    <div class="card-body py-2">
+      <div class="table-responsive d-flex">
+        <table class="">
           <tbody>
-            <!--begin::List Widget 5-->
-			<div class="card card-xxl-stretch">
-				<!--begin::Header-->
+            <!--begin::Timeline-->
+			<div class="card card-xxl-stretch w-50 flex-grow-1 flex-shrink-0">
 				<div class="card-header align-items-center border-0 mt-4">
 					<h3 class="card-title align-items-start flex-column">
 						<span class="fw-bolder mb-2 text-dark">Last logs from your appliance Number <%= @appliance.serial_number %></span>
 						<span class="text-muted fw-bold fs-7">Cycles,  errors & miscellaneous datas.</span>
 					</h3>
 				</div>
-				<!--end::Header-->
-				<!--begin::Body-->
 				<div class="card-body pt-5">
-					<!--begin::Timeline-->
 					<div class="timeline-label">
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">08:42</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-warning fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Text-->
 							<div class="fw-mormal timeline-content text-muted ps-3">Outlines keep you honest. And keep structure</div>
-							<!--end::Text-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">10:00</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-success fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Content-->
 							<div class="timeline-content d-flex">
 								<span class="fw-bolder text-gray-800 ps-3">AEOL meeting</span>
 							</div>
-							<!--end::Content-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">14:37</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-danger fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Desc-->
 							<div class="timeline-content fw-bolder text-gray-800 ps-3">Make deposit
 							<a href="#" class="text-primary">USD 700</a>. to ESL</div>
-							<!--end::Desc-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">16:50</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-primary fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Text-->
 							<div class="timeline-content fw-mormal text-muted ps-3">Indulging in poorly driving and keep structure keep great</div>
-							<!--end::Text-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-danger fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Desc-->
 							<div class="timeline-content fw-bold text-gray-800 ps-3">New order placed
 							<a href="#" class="text-primary">#XF-2356</a>.</div>
-							<!--end::Desc-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">16:50</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-primary fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Text-->
 							<div class="timeline-content fw-mormal text-muted ps-3">Indulging in poorly driving and keep structure keep great</div>
-							<!--end::Text-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-danger fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Desc-->
 							<div class="timeline-content fw-bold text-gray-800 ps-3">New order placed
 							<a href="#" class="text-primary">#XF-2356</a>.</div>
-							<!--end::Desc-->
 						</div>
-						<!--end::Item-->
-						<!--begin::Item-->
 						<div class="timeline-item">
-							<!--begin::Label-->
 							<div class="timeline-label fw-bolder text-gray-800 fs-6">10:30</div>
-							<!--end::Label-->
-							<!--begin::Badge-->
 							<div class="timeline-badge">
 								<i class="fa fa-genderless text-success fs-1"></i>
 							</div>
-							<!--end::Badge-->
-							<!--begin::Text-->
 							<div class="timeline-content fw-mormal text-muted ps-3">Finance KPI Mobile app launch preparion meeting</div>
-							<!--end::Text-->
 						</div>
-						<!--end::Item-->
 					</div>
-					<!--end::Timeline-->
 				</div>
-				<!--end: Card Body-->
 			</div>
-			<!--end: List Widget 5-->
-          </tbody>
+		<!--end: Timeline-->
+		<!--begin::Charts-->
+
+			<div class="card card-xl-stretch mb-xl-8 w-50 flex-grow-1 flex-shrink-0">
+				<div class="card-header border-0 pt-5 flex-column">
+					<h3 class="card-title align-items-start flex-column">
+						<span class="card-label fw-bolder fs-3 mb-1">Your last cycles</span>
+						<span class="text-muted fw-bold fs-7">Get more informations about your appliance n°<%= @appliance.serial_number %>.</span>
+					</h3>
+					<div class="card-toolbar" data-kt-buttons="true">
+						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>
+						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>
+						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<div id="kt_charts_widget_3_chart" style="height: 350px"></div>
+				</div>
+			</div>
+			<!--end::Charts-->
+		  </tbody>
         </table>
       </div>
     </div>
