@@ -14,9 +14,9 @@ user = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :passw
 user = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
 puts 'Creating appliances...'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :family => 1
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :family => 2
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :family => '3'
+appliance = Appliance.create! :model => 'BOSCH Série 8', :serial_number => 'SMV8YCX01E', :user_id => '1', :family => 1
+appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => '1', :family => 2
+appliance = Appliance.create! :model => 'BEKO Réfrigérateur', :serial_number => 'LLF07W15', :user_id => '1', :family => '3'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '1', :family => '1'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :family => '2'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '2', :family => '3'
@@ -28,9 +28,9 @@ appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => '4', :family => '3'
 
 puts 'Creating serial numbers...'
-SerialNumber.create!({ value: "1236589" })
-SerialNumber.create!({ value: "1590607" })
-SerialNumber.create!({ value: "4789304" })
+SerialNumber.create!({ value: "SMV8YCX01E" })
+SerialNumber.create!({ value: "BWE71483WFRN" })
+SerialNumber.create!({ value: "LLF07W15" })
 SerialNumber.create!({ value: "1075628" })
 SerialNumber.create!({ value: "9068376" })
 SerialNumber.create!({ value: "9876543" })
