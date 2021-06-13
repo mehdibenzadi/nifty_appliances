@@ -35,7 +35,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 
 # Sidekiq + scheduler
-gem 'sidekiq', '=5.2.9'
+gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'sidekiq-scheduler', '~> 2.0', '>= 2.0.8'
 
