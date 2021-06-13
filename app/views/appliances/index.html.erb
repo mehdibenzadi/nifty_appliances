@@ -70,9 +70,9 @@ end
               <td class="text-end">
                 <button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access</button>
                 <button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access</button>
-                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.status %>
-                <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
-              </td>
+                <% online_status = Onlinestatus.find_by(serial_number: appliance.serial_number) %>
+                <%= render "online_status_button", online_status: online_status %>
+              </td>s
               <td class="text-end">
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary' } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->

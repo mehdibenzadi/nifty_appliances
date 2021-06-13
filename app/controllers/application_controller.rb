@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # config.active_job.queue_adapter = :sidekiq
 
-  def isonline (event) 
+  def isonline (event)
     appliance_monitored = Onlinestatus.find_by(serial_number: event.serial_number)
     if appliance_monitored
       appliance_monitored.online = true
@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     else
       register = Onlinestatus.new(serial_number: event.serial_number, online: true)
       register.save
+
+      OnlineStatusChannel.broadcast_to(
+        register,
+        render_to_string(partial: "online_status_button", locals: { online_status: register })
+      )
     end
   end
 
@@ -22,9 +27,9 @@ class ApplicationController < ActionController::Base
     when "cycle"
 
     when "error"
-      
+
     else
-      
+
     end
   end
 
