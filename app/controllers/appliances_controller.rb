@@ -2,7 +2,15 @@ class AppliancesController < ApplicationController
   layout "appliance"
 
   def add
-    @appliance = Appliance.new
+    if isdiscoverable (appliance_params[:serial_number])
+      #on crée une permission
+      raise
+    else
+      raise
+    end
+    # verifier si serial est dans la DB de discovery
+    # Si oui, l'ajouter.
+    # raise
   end
 
   def index
@@ -30,6 +38,6 @@ class AppliancesController < ApplicationController
   private
 
   def appliance_params
-    params.require(:appliance).permit(:serial_number)
+    params.permit(:serial_number, :appliance)
   end
 end
