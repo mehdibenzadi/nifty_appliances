@@ -1,5 +1,5 @@
 <%
-def svgtourl(family) 
+def svgtourl(family)
   case family
   when 1
     "/assets/media/svg/family/001-dishwasher.svg"
@@ -11,7 +11,7 @@ def svgtourl(family)
 end
 %>
 <%
-def appliancefamily(family) 
+def appliancefamily(family)
   case family
   when 1
     "Dishwasher"
@@ -68,9 +68,10 @@ end
                 <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
-              <button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access</button>
-		          <button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access</button>
-                <span class="badge badge-light-success fw-bold me-1">Online</span>
+                <button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access</button>
+                <button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access</button>
+                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.status %>
+                <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
               </td>
               <td class="text-end">
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary' } do %>
