@@ -1,11 +1,18 @@
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
-    <div class="card-header border-0 pt-5 w-50">
-      <h3 class="card-title align-items-start flex-column">
-        <span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2"><img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span></span>
-      </h3>
-    </div>
-	<div class="card-header border-0 pt-5 w-100">
+	<div class="card-header border-0 pt-5 w-50">
+	<h3 class="card-title align-items-start flex-column">
+		<span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2">
+			<img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span></span>
+	</h3>
+	</div>
+	<div class="card-header border-0 pt-5 w-50" >
+	<h3 class="card-title align-items-end">
+			<% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.status %>
+			<span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
+	</h3>
+	</div>
+	<div class="card-header border-0 pt-5 w-100 align-items-start">
 		<button type="button" class="btn btn-secondary btn-sm m-3 col-3"><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button>
 		<button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access to a repairer</button>
 		<button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access to a repairer</button>
@@ -23,62 +30,17 @@
 					</h3>
 				</div>
 				<div class="card-body pt-5">
+				
 					<div class="timeline-label">
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">08:42</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-primary fs-1"></i>
+						<% @events.each do |event| %>
+							<div class="timeline-item">
+								<div class="timeline-label fw-bolder text-gray-800 fs-6"><%= event.occurs_at.strftime('%I:%M') %></div>
+								<div class="timeline-badge">
+									<i class="fa fa-genderless text-<%= event.event_type %> fs-1"></i>
+								</div>
+								<div class="fw-mormal timeline-content text-muted ps-3"><%= event.value %></div>
 							</div>
-							<div class="fw-mormal timeline-content text-muted ps-3">Launch Eco Cycle - 2500T</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">12:47</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-success fs-1"></i>
-							</div>
-							<div class="timeline-content d-flex">
-								<span class="fw-mormal timeline-content text-muted ps-3">End Eco Cycle - 2500T/min</span>
-							</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">14:32</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-primary fs-1"></i>
-							</div>
-							<div class="fw-mormal timeline-content text-muted ps-3">White Cycle 45min - 1200T/min
-							</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">15:17</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-success fs-1"></i>
-							</div>
-							<div class="timeline-content fw-mormal text-muted ps-3">End White Cycle 45min - 1200T/min</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-primary fs-1"></i>
-							</div>
-							<div class="timeline-content fw-bold text-gray-800 ps-3">Black Cycle 45min - 1200T/min
-							</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">16:50</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-warning fs-1"></i>
-							</div>
-							<div class="timeline-content fw-bold text-gray-800 ps-3">Issue with Black Cycle 45min - 1200T/min</div>
-						</div>
-						<div class="timeline-item">
-							<div class="timeline-label fw-bolder text-gray-800 fs-6">21:03</div>
-							<div class="timeline-badge">
-								<i class="fa fa-genderless text-danger fs-1"></i>
-							</div>
-							<div class="timeline-content fw-bold text-gray-800 ps-3">Error code - F12
-							<span class="fw-mormal timeline-content text-muted ps-3">Contact a repairer</span>
-							</div>
-						</div>
+						<% end %>
 					</div>
 				</div>
 			</div>
