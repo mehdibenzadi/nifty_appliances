@@ -11,6 +11,7 @@ class AppliancesController < ApplicationController
 
   def show 
     @appliance = Appliance.find(params[:id])
+    @events = Event.where(serial_number: @appliance.serial_number).order(occurs_at: :desc).first(10)
   end
 
   def link_user
