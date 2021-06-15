@@ -24,7 +24,7 @@ var KTCreateApp = function () {
 			console.log('stepper.next');
 
 			// Validate form before change stepper step
-			var validator = validations[stepper.getCurrentStepIndex() - 1]; // get validator for currnt step
+			var validator = validations[stepper.getCurrentStepIndex() - 1]; // get validator for current step
 
 			if (validator) {
 				validator.validate().then(function (status) {
@@ -67,19 +67,22 @@ var KTCreateApp = function () {
 		// Submit event
 		formSubmitButton.addEventListener('click', function (e) {
 			// Prevent default button action
-			e.preventDefault();
+			//e.preventDefault();
 
+      //console.log('submit');
 			// Disable button to avoid multiple click 
 			formSubmitButton.disabled = true;
 
 			// Show loading indication
 			formSubmitButton.setAttribute('data-kt-indicator', 'on');
 
+      form.submit();
+
 			// Simulate form submission
-			setTimeout(function() {
+			/* setTimeout(function() {
 				// Hide loading indication
 				formSubmitButton.removeAttribute('data-kt-indicator');
-
+        
 				// Enable button
 				formSubmitButton.disabled = false;
 				
@@ -98,7 +101,7 @@ var KTCreateApp = function () {
 						//form.submit(); // Submit form
 					}
 				});				
-			}, 2000);   
+			}, 2000);    */
 		});
 	}
 
@@ -108,22 +111,7 @@ var KTCreateApp = function () {
 		validations.push(FormValidation.formValidation(
 			form,
 			{
-				fields: {
-					name: {
-						validators: {
-							notEmpty: {
-								message: 'App name is required'
-							}
-						}
-					},
-					category: {
-						validators: {
-							notEmpty: {
-								message: 'Category is required'
-							}
-						}
-					}
-				},
+				
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -140,10 +128,10 @@ var KTCreateApp = function () {
 			form,
 			{
 				fields: {
-					framework: {
+					name: {
 						validators: {
 							notEmpty: {
-								message: 'Framework is required'
+								message: 'Serial number is required'
 							}
 						}
 					}
