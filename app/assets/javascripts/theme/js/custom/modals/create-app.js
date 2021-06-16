@@ -13,6 +13,7 @@ var KTCreateApp = function () {
 	// Variables
 	var stepperObj;
 	var validations = [];
+  const serial_number = document.getElementById("serial_number");
 
 	// Private Functions
 	var initStepper = function () {
@@ -75,33 +76,57 @@ var KTCreateApp = function () {
 
 			// Show loading indication
 			formSubmitButton.setAttribute('data-kt-indicator', 'on');
+     
+      var answer;
+      fetch(`http://localhost:3000/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
+        //console.log(response);
+        if (response == 'true') {
+          console.log('true');
+          
+          
+          // Show popup confirmation. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+          Swal.fire({
+            text: "Appliance has been succesfully added!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+              confirmButton: "btn btn-primary"
+            }
+          }).then(function (result) {
+            if (result.isConfirmed) {
+              modal.hide(); // close modal
+              form.submit(); // Submit form
+            }
+          });	
+        } else{
+          console.log('false');
+          Swal.fire({
+            text: "Error in the serial number or application not is discovery mode",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+              confirmButton: "btn btn-danger"
+            }
+          }).then(function (result) {
+            if (result.isConfirmed) {
+              modal.hide(); // close modal
+              formSubmitButton.removeAttribute('data-kt-indicator');
+              formSubmitButton.disabled = false;
+            }
+          });	
+  
+        }
 
-      form.submit();
+      });
 
+      
 			// Simulate form submission
 			/* setTimeout(function() {
 				// Hide loading indication
-				formSubmitButton.removeAttribute('data-kt-indicator');
-        
-				// Enable button
-				formSubmitButton.disabled = false;
-				
-				// Show popup confirmation. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-				Swal.fire({
-					text: "Form has been successfully submitted!",
-					icon: "success",
-					buttonsStyling: false,
-					confirmButtonText: "Ok, got it!",
-					customClass: {
-						confirmButton: "btn btn-primary"
-					}
-				}).then(function (result) {
-					if (result.isConfirmed) {
-						modal.hide(); // close modal
-						//form.submit(); // Submit form
-					}
-				});				
-			}, 2000);    */
+							
+			}, 2000);   */ 
 		});
 	}
 
