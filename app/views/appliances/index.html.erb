@@ -74,7 +74,7 @@ end
                 <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
               </td>
               <td class="text-end">
-                <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary' } do %>
+                <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary', :"data-no-turbolink" => true } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
                   <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
