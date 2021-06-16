@@ -19,14 +19,18 @@ class ApplicationController < ActionController::Base
     SerialNumber.exists?(value: serial_number)
   end
 
+  def make_discoverable (serial_number)
+    @discoverable = SerialNumber.new()
+    @discoverable.value = serial_number
+    @discoverable.save
+  end
+
   def process_data(event)
     case event.event_type
     when "status"
       isonline (event)
     when "discoverable"
-      @discoverable = SerialNumber.new()
-      @discoverable.value = event.serial_number
-      @discoverable.save
+      make_discoverable(event.serial_number)
     when "error"
       
     else
