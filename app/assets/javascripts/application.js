@@ -8,4 +8,4 @@
 //= require @popperjs/core/dist/umd/popper
 
 //= require_tree ./theme/js/components
-
+//= require ./proprietary/websocket
