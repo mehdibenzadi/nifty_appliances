@@ -78,7 +78,7 @@ var KTCreateApp = function () {
 			formSubmitButton.setAttribute('data-kt-indicator', 'on');
      
       var answer;
-      fetch(`http://localhost:3000/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
+      fetch(`http://niftyapp.tech/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
         //console.log(response);
         if (response == 'true') {
           console.log('true');
@@ -111,7 +111,7 @@ var KTCreateApp = function () {
             }
           }).then(function (result) {
             if (result.isConfirmed) {
-              modal.hide(); // close modal
+              // modal.hide(); // close modal
               formSubmitButton.removeAttribute('data-kt-indicator');
               formSubmitButton.disabled = false;
             }

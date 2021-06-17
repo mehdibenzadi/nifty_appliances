@@ -68,8 +68,8 @@ end
                 <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
-                <button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access</button>
-                <button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access</button>
+                <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "btn btn-secondary btn-sm m-3 col-4", data: {confirm: 'Are you sure?'} %>
+                <!-- <button  class="btn btn-secondary btn-sm m-3 col-4">Remove</button> -->
                 <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.status %>
                 <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
               </td>

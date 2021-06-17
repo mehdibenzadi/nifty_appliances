@@ -4,10 +4,12 @@ class AppliancesController < ApplicationController
   def add
     @serial_number = params[:serial_number]
     if (isdiscoverable(@serial_number) && Appliance.exists?(serial_number:@serial_number))
-      #on lie l'appliance
+      # On lie l'appliance
       @appliance = Appliance.find_by(serial_number:appliance_params[:serial_number])
       @appliance.user_id = current_user.id
       @appliance.save
+      # Clean the SerialNumber table 
+      SerialNumber.where(:value => @serial_number).delete_all
       redirect_to root_path
     else
       raise
@@ -29,10 +31,19 @@ class AppliancesController < ApplicationController
   def validation
     @serial_number = params[:serial_number]
     if (isdiscoverable(@serial_number) && Appliance.exists?(serial_number:@serial_number))
+      # on donne le temps à la requête d'arriver
+      make_discoverable(@serial_number)
       render :inline => "true"
     else
       render :inline => "false"
     end
+  end
+
+  def remove
+    @appliance = Appliance.find(params[:id])
+    @appliance.user_id = ""
+    @appliance.save
+    redirect_to root_path
   end
 
   def link_user

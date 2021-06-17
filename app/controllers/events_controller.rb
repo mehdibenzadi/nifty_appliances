@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # before_action :declare_view_type
   
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(:event_type => event_params[:event_type], :value => event_params[:value], :occurs_at => DateTime.strptime(event_params[:occurs_at],'%s'), :serial_number => event_params[:serial_number])
     if @event.save
       process_data(@event)
       head :ok
