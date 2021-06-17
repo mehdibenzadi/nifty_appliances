@@ -2,3 +2,9 @@
   <%= f.input :serial_number %>
   <%= f.submit %>
 <% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag '//cdn.jsdelivr.net/npm/apexcharts', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js', 'data-turbolinks-track': 'reload' %>
+<% end %>
