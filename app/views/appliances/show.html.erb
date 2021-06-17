@@ -1,3 +1,18 @@
+<% flash.each do |type, msg| %>
+  <% if (type == "notice") %>
+  <div class="alert alert-success alert-dismissible fade show">
+    <%= msg %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% elsif (type == "alert") %>
+  <div class="alert alert-danger alert-dismissible fade show">
+    <%= msg %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% else %>
+  <% end %>
+<% end %>
+
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
 	<div class="card-header border-0 pt-5 w-50">
@@ -10,8 +25,7 @@
 	</div>
 	<div class="card-header border-0 pt-5 w-100">
 		<button type="button" class="btn btn-secondary btn-sm m-3 col-3"><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button>
-		<button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access to a repairer</button>
-		<button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access to a repairer</button>
+		<a href="#" class="btn btn-success btn-sm m-3 col-4" data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a>
 	</div>
     <div class="card-body py-2 ">
       <div class="table-responsive d-flex">
@@ -65,10 +79,12 @@
 		  </tbody>
         </table>
       </div>
-      <!-- If curren_user.repairer == true alors show render revoke -->
+      <!-- If current_user.repairer == true alors show render revoke -->
     </div>
   </div>
 </div>
+
+<%= render "shared/upgrade_plan_modal" %>
 
 <% content_for :scripts do %>
   <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
