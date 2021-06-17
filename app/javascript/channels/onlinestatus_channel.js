@@ -1,12 +1,13 @@
 import consumer from "./consumer";
 
-const initOnlineStatusCable = () => {
+const initOnlinestatusCable = () => {
+  console.log("Hello Mathis");
   const onlineStatusButtons = document.querySelectorAll('offlinebutton');
 
   onlineStatusButtons.forEach((element) => {
     const id = element.dataset.onlineStatusId;
 
-    consumer.subscriptions.create({ channel: "OnlineStatusChannel", id: id }, {
+    consumer.subscriptions.create({ channel: "OnlinestatusChannel", id: id }, {
       received(data) {
         console.log(data); // called when data is broadcast in the cable
       },
@@ -14,4 +15,4 @@ const initOnlineStatusCable = () => {
   })
 }
 
-export { initOnlineStatusCable };
+export { initOnlinestatusCable };
