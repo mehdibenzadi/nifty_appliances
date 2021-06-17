@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  # Custom routes
   get '/validation/:serial_number', to: 'appliances#validation'
   get '/remove/:id', to: 'appliances#remove', as: 'remove'
 
@@ -29,4 +30,6 @@ Rails.application.routes.draw do
   end
   
   resources :events, only: [:create]
+
+  resources :permissions, only: [:create, :destroy]
 end
