@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def isdiscoverable (serial_number)
-    SerialNumber.find_by(value: serial_number)
+    SerialNumber.exists?(value: serial_number)
   end
 
   def process_data(event)
