@@ -20,7 +20,11 @@ class AppliancesController < ApplicationController
   end
 
   def index
-    @appliances = current_user.appliances
+    if current_user.repairer == false
+      @appliances = current_user.appliances
+    else
+      @appliances = current_user.permitted_appliances
+    end
   end
 
   def show 
