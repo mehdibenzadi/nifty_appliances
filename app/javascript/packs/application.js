@@ -7,11 +7,10 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import { initOnlinestatusCable } from "../channels/onlinestatus_channel";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
 
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
@@ -19,7 +18,7 @@ ActiveStorage.start()
 // ----------------------------------------------------
 
 // External imports
-import "bootstrap";
+// import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -27,4 +26,7 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  console.log("application");
+  initOnlinestatusCable();
+  console.log("Hello world");
 });

@@ -16,10 +16,10 @@ user3 = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :pass
 user4 = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
 puts 'Creating appliances...'
-appliance = Appliance.create! :model => 'BOSCH Série 8', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
+appliance = Appliance.create! :model => 'BOSCH Série 8 Lave-vaisselle', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
 appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => user1.id, :family => 2
 appliance = Appliance.create! :model => 'BEKO Réfrigérateur', :serial_number => 'LLF07W15', :user_id => user1.id, :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user1.id, :family => '1'
+appliance = Appliance.create! :model => 'ARTHUR MARTIN Lave-vaisselle', :serial_number => 'AMEFR345768', :user_id => user1.id, :family => '1'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '2'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '3'
 appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '1'
@@ -43,3 +43,45 @@ SerialNumber.create!({ value: "1324354" })
 SerialNumber.create!({ value: "7564243" })
 SerialNumber.create!({ value: "0798645" })
 SerialNumber.create!({ value: "0687922" })
+
+puts 'Creating Events...'
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'primary', value: 'Start Black 380T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'success', value: 'End Black 380T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'primary', value: 'Start White 240T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'success', value: 'End White 240T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'danger', value: 'Error Code F12', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'primary', value: 'Start Black 380T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'success', value: 'End Black 380T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'primary', value: 'Start White 240T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'success', value: 'End White 240T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'danger', value: 'Error Code F12', occurs_at: Time.current, serial_number: 'BWE71483WFRN')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'primary', value: 'Start Black 380T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'success', value: 'End Black 380T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'primary', value: 'Start White 240T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'success', value: 'End White 240T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'danger', value: 'Error Code F12', occurs_at: Time.current, serial_number: 'LLF07W15')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'primary', value: 'Start Black 380T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'success', value: 'End Black 380T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'success', value: 'End Eco 250T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'primary', value: 'Start White 240T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'success', value: 'End White 240T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'AMEFR345768')
+Event.create!(event_type: 'danger', value: 'Error Code F12', occurs_at: Time.current, serial_number: 'AMEFR345768')

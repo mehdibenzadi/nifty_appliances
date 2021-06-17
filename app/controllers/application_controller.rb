@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  def isdiscoverable (serial_number)
+    SerialNumber.find_by(value: serial_number)
+  end
+
   def process_data(event)
     case event.event_type
     when "status"
