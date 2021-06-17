@@ -4,10 +4,10 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+// import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import initOnlineChannel from "../channels/onlinestatus_channel";
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
@@ -23,9 +23,6 @@ ActiveStorage.start()
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-  
-  console.log("Hello world");
-});
+document.addEventListener('DOMContentLoaded', () => {
+  initOnlineChannel();
+})
