@@ -8,16 +8,16 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:repairer])
   end
 
-  def isonline (event) 
-    appliance_monitored = Onlinestatus.find_by(serial_number: event.serial_number)
-    if appliance_monitored
-      appliance_monitored.online = true
-      appliance_monitored.save
-      appliance_monitored.touch
-    else
-      register = Onlinestatus.new(serial_number: event.serial_number, online: true)
-      register.save
-    end
+  def is_online(event)
+    p "is online"
+    appliance_monitored = Onlinestatus.find_or_initialize_by(serial_number: event.serial_number)
+    appliance_monitored.online = !appliance_monitored.online
+    appliance_monitored.save
+    appliance_monitored.touch
+    OnlinestatusChannel.broadcast_to(
+      appliance_monitored,
+      render_to_string(partial: "appliances/online_status_button", locals: { online_status: appliance_monitored })
+    )
   end
 
   def isdiscoverable (serial_number)
@@ -33,13 +33,13 @@ class ApplicationController < ActionController::Base
   def process_data(event)
     case event.event_type
     when "status"
-      isonline (event)
+      is_online(event)
     when "discoverable"
       make_discoverable(event.serial_number)
     when "error"
-      
+      print "error"
     else
-      
+      print "else"
     end
   end
 
