@@ -28,15 +28,9 @@ class ApplicationController < ActionController::Base
   def process_data(event)
     case event.event_type
     when "status"
-<<<<<<< HEAD
-      is_online(event)
-    when "cycle"
-      print "cycle"
-=======
       isonline (event)
     when "discoverable"
       make_discoverable(event.serial_number)
->>>>>>> 731d2cb9ac1a8a55de90778a66a21b7be1dbf1f5
     when "error"
       print "error"
     else
