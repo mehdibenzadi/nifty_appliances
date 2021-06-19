@@ -4,7 +4,7 @@
 	<h3 class="card-title align-items-start flex-column">
 		<span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2">
 			<img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span><br/>
-			<span class="text-muted fw-bold fs-7">Your device status is currently :</span> <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.status %>
+			<span class="text-muted fw-bold fs-7">Your device status is currently :</span> <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.online %>
 			<span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
 	</h3>
 	</div>
