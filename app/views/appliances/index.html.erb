@@ -72,8 +72,8 @@ end
                 <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "btn btn-secondary btn-sm m-3 col-4", data: {confirm: 'Are you sure?'} %>
                 <% end %>
                 <!-- <button  class="btn btn-secondary btn-sm m-3 col-4">Remove</button> -->
-                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.online %>
-                <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
+                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number) %>
+                <%= render "online_status_button", online_status: status %>
               </td>
               <td class="text-end">
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary', :"data-no-turbolink" => true } do %>

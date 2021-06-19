@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def process_data(event)
     case event.event_type
     when "status"
-      isonline (event)
+      is_online(event)
     when "discoverable"
       make_discoverable(event.serial_number)
     when "error"
