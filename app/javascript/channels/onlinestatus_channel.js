@@ -16,12 +16,14 @@ import consumer from "./consumer";
 }
  */
 const initOnlineChannel = () => {
-  const onlineStatusButtons = document.querySelectorAll(".badge.badge-light-danger, .badge.badge-light-success");
+  let onlineStatusButtons = document.querySelectorAll(".status-button");
   onlineStatusButtons.forEach(button => {
     const id = button.dataset.onlineStatusId;
     consumer.subscriptions.create({ channel: "OnlinestatusChannel", id: id }, {
       received(data) {
-        button.outerHTML = data;
+        onlineStatusButtons = document.querySelectorAll(".status-button")
+        const badge = [...onlineStatusButtons].find(statusButton => statusButton.dataset.onlineStatusId === id)
+        badge.outerHTML = data;
       },
     });
   });

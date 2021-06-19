@@ -1,3 +1,3 @@
-<span class="badge <%= online_status&.online == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1" data-online-status-id="<%= online_status&.id%>">
+<span class="status-button badge <%= online_status&.online == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1" data-online-status-id="<%= online_status&.id%>">
   <%= online_status&.online == true ? 'Online' : 'Offline' %>
 </span>
