@@ -68,19 +68,13 @@ end
                 <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
-<<<<<<< HEAD
-                <button type="button" class="btn btn-success btn-sm m-3 col-4">Grant access</button>
-                <button type="button" class="btn btn-danger btn-sm m-3 col-4">Revoke access</button>
-                <% online_status = Onlinestatus.find_by(serial_number: appliance.serial_number) %>
-                <%= render "online_status_button", online_status: online_status %>
-              </td>s
-=======
+                <% if (current_user.repairer == false) %>
                 <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "btn btn-secondary btn-sm m-3 col-4", data: {confirm: 'Are you sure?'} %>
+                <% end %>
                 <!-- <button  class="btn btn-secondary btn-sm m-3 col-4">Remove</button> -->
-                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.status %>
+                <% status = Onlinestatus.find_by(serial_number: appliance.serial_number)&.online %>
                 <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
               </td>
->>>>>>> 731d2cb9ac1a8a55de90778a66a21b7be1dbf1f5
               <td class="text-end">
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary', :"data-no-turbolink" => true } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
@@ -115,5 +109,3 @@ end
   <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-class OnlineButton
-end

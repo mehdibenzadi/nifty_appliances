@@ -35,12 +35,10 @@
     </div>
     <!--end::Page title-->
     <!--begin::Actions-->
-    <div class="d-flex align-items-center py-1">
-      
-      <!--begin::Button-->
-      <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Add an appliance</a>
-      <!--end::Button-->
-    </div>
+    <%  if (current_user.repairer == false) %>
+      <%= render "shared/add_appliance" %>
+    <% end %>
+    
     <!--end::Actions-->
   </div>
   <!--end::Container-->
