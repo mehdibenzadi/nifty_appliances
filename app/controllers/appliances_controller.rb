@@ -2,9 +2,15 @@ class AppliancesController < ApplicationController
   layout "appliance"
 
   def add
-    if isdiscoverable (appliance_params[:serial_number])
-      #on crée une permission
-      raise
+    @serial_number = params[:serial_number]
+    if (isdiscoverable(@serial_number) && Appliance.exists?(serial_number:@serial_number))
+      # On lie l'appliance
+      @appliance = Appliance.find_by(serial_number:appliance_params[:serial_number])
+      @appliance.user_id = current_user.id
+      @appliance.save
+      # Clean the SerialNumber table 
+      SerialNumber.where(:value => @serial_number).delete_all
+      redirect_to root_path
     else
       raise
     end
@@ -20,6 +26,24 @@ class AppliancesController < ApplicationController
   def show 
     @appliance = Appliance.find(params[:id])
     @events = Event.where(serial_number: @appliance.serial_number).order(occurs_at: :desc).first(10)
+  end
+
+  def validation
+    @serial_number = params[:serial_number]
+    if (isdiscoverable(@serial_number) && Appliance.exists?(serial_number:@serial_number))
+      # on donne le temps à la requête d'arriver
+      make_discoverable(@serial_number)
+      render :inline => "true"
+    else
+      render :inline => "false"
+    end
+  end
+
+  def remove
+    @appliance = Appliance.find(params[:id])
+    @appliance.user_id = ""
+    @appliance.save
+    redirect_to root_path
   end
 
   def link_user

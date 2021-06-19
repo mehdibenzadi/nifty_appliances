@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get '/validation/:serial_number', to: 'appliances#validation'
+  get '/remove/:id', to: 'appliances#remove', as: 'remove'
+
+
   devise_scope :user do
     authenticated do
       root to: 'appliances#index'
