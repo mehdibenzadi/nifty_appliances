@@ -10,14 +10,20 @@ class PermissionsController < ApplicationController
     if email_exist
       user_is_repairer = User.find_by(email: permission_params[:user_email]).repairer?
     end
-    
+
     if (belongs_to_user && user_is_repairer)
       # Appliance belongs to current_user, allow to create permission
-      @permission = Permission.new
-      @permission.appliance_id = params[:appliance_id]
-      @permission.user_id = User.find_by(email: permission_params[:user_email]).id
-      @permission.save
-      redirect_to appliance_path(@appliance), :notice => "Successfully granted access to repairer #{permission_params[:user_email]}"
+      @user_id = User.find_by(email: permission_params[:user_email]).id
+      if Permission.where(appliance_id: params[:appliance_id], user_id: @user_id).exists?
+        redirect_to appliance_path(@appliance), :notice => "Access was already granted to repairer #{permission_params[:user_email]}"
+      else
+        @permission = Permission.new
+        @permission.appliance_id = params[:appliance_id]
+        @permission.user_id = @user_id
+        @permission.save
+        redirect_to appliance_path(@appliance), :notice => "Successfully granted access to repairer #{permission_params[:user_email]}"
+      end
+      
     else
       if (email_exist == false)
       redirect_to appliance_path(@appliance), :alert => "User doesn't exist"

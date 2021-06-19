@@ -1,8 +1,9 @@
 class OnlinestatusChannel < ApplicationCable::Channel
   def subscribed
-    p "subscribe"
+    # p "subscribe"
     # stream_from "some_channel"
     onlinestatus = Onlinestatus.find(params[:id])
+    p onlinestatus
     stream_for onlinestatus
   end
 
