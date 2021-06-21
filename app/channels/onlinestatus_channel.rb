@@ -3,7 +3,6 @@ class OnlinestatusChannel < ApplicationCable::Channel
     # p "subscribe"
     # stream_from "some_channel"
     onlinestatus = Onlinestatus.find(params[:id])
-    p onlinestatus
     stream_for onlinestatus
   end
 
