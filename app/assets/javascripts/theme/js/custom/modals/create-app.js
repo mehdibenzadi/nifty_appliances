@@ -78,7 +78,7 @@ var KTCreateApp = function () {
 			formSubmitButton.setAttribute('data-kt-indicator', 'on');
      
       var answer;
-      fetch(`http://localhost:3000/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
+      fetch(`http://niftyapp.tech:3000/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
         //console.log(response);
         if (response == 'true') {
           console.log('true');

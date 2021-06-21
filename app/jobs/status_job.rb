@@ -3,14 +3,13 @@ class StatusJob < ApplicationJob
 
   def perform(*args)
     Onlinestatus.find_each do |serial|
-      if ( serial.online? && ((Time.now.utc - serial.updated_at) > 40 ))
+      if (serial.online? && ((Time.now.utc - serial.updated_at) > 5 ))
         serial.online = false
         serial.save
-        OnlineStatusChannel.broadcast_to(
+        OnlinestatusChannel.broadcast_to(
           serial,
-          ApplicationController.new.render_to_string(partial: "online_status_button", locals: { online_status: serial })
+          ApplicationController.new.render_to_string(partial: "appliances/online_status_button", locals: { online_status: serial })
         )
-
         # render_to_string n'existe pas ici
       end
     end
