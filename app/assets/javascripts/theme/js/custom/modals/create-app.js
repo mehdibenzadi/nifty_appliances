@@ -76,10 +76,12 @@ var KTCreateApp = function () {
 
 			// Show loading indication
 			formSubmitButton.setAttribute('data-kt-indicator', 'on');
-     
+      const base_url = window.location.origin;
+      const fetch_url = base_url + '/validation/' + serial_number.value;
+
       var answer;
-      fetch(`http://niftyapp.tech:3000/validation/${serial_number.value}`).then(response => response.text()).then(function(response) {
-        //console.log(response);
+      fetch(fetch_url).then(response => response.text()).then(function(response) {
+        console.log(fetch_url);
         if (response == 'true') {
           console.log('true');
           
