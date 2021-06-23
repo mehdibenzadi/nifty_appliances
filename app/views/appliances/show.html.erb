@@ -16,23 +16,23 @@
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
 	<div class="card-header border-0 pt-5 w-100">
-	<h3 class="card-title align-items-start flex-column">
-		<span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2">
-			<img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span><br/>
-			<span class="text-muted fw-bold fs-7">Your device status is currently :</span> <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.online %>
-			<span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
-	</h3>
+		<h3 class="card-title align-items-start flex-column">
+			<span class="card-label fw-bolder fs-3 mb-1"><div class="symbol symbol-20px me-2">
+				<img src="/assets/media/svg/family/001-dishwasher.svg" class="h-20 align-self-center" alt=""></div><%= @appliance.model %> <span class="text-muted fw-bold fs-7">(Serial Number: <%= @appliance.serial_number %>)</span><br/>
+				<span class="text-muted fw-bold fs-7">Your device status is currently :</span> <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.online %>
+				<span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold me-1"><%= status == true ? 'Online' : 'Offline' %></span>
+		</h3>
 	</div>
 	<div class="tpbutton btn-toolbar">
 		<div class=""><button type="button" class="btn btn-secondary" style='margin: 10px 20px 0px 30px;'><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button></div>
-		<div class=""><a href="#" class="btn btn-success" style='margin: 10px 50px 0px 0px;' data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a></div>
+		<div class=""><a href="#" class="btn btn-success" style='margin: 10px 50px 10px 0px;' data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a></div>
 	</div>
     <div content d-flex flex-column flex-column-fluid" id="kt_content_container">
       <div class="table-responsive d-flex">
         <table class="row gy-5 g-xl-8">
           <tbody>
             <!--begin::Timeline-->
-			<div class="card card-xxl-stretch w-100 flex-grow-1 flex-shrink-0">
+			<div class="card card-xxl-stretch w-50 flex-grow-1 flex-shrink-0">
 				<div class="card-header align-items-center border-0 mt-4">
 					<h3 class="card-title align-items-start flex-column">
 						<span class="fw-bolder mb-2 text-dark">Last logs from your appliance Number <%= @appliance.serial_number %></span>
@@ -56,23 +56,14 @@
 			</div>
 		<!--end: Timeline-->
 		<!--begin::Charts-->
-
-			<div class="card card-xl-stretch mb-xl-8 w-100 flex-grow-1 flex-shrink-0">
+			<div class="card card-xl-stretch mb-xl-8 w-50 flex-grow-1 flex-shrink-0">
 				<div class="card-header border-0 pt-5 flex-column">
 					<h3 class="card-title align-items-start flex-column">
-						<span class="card-label fw-bolder fs-3 mb-1">Your last cycles</span>
+						<span class="card-label fw-bolder fs-3 mb-1">Your monthly cycles</span>
 						<span class="text-muted fw-bold fs-7">Get more informations about your appliance n°<%= @appliance.serial_number %>.</span>
 					</h3>
-					<%# <div class="card-toolbar" data-kt-buttons="true">
-						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>
-						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>
-						<a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>
-					</div> %>
 				</div>
-				<div class="card-body">
-					<div id="kt_charts_widget_3_chart" style="height: 350px">
-						
-					</div>
+					<div class="mixed-widget-10-chart" data-kt-color="primary" style="height: 175px; min-height: 183px;">			
 				</div>
 			</div>
 			<!--end::Charts-->
@@ -85,7 +76,6 @@
 </div>
 
 <%= render "shared/upgrade_plan_modal" %>
-
 <% content_for :scripts do %>
   <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag '//cdn.jsdelivr.net/npm/apexcharts', 'data-turbolinks-track': 'reload' %>
