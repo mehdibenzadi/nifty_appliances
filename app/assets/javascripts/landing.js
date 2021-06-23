@@ -1,5 +1,6 @@
 //= require ./countUp/countUp.js
 //= require ./theme/js/custom/pages/company/pricing.js
+//= require ./theme/js/custom/modals/upgrade-plan.js
 //= require ./theme/js/layout/aside.js
 //= require ./theme/js/layout/app.js
 //= require ./theme/js/layout/toolbar.js
