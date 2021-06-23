@@ -69,14 +69,25 @@ end
                 <span class="text-muted fw-bold d-block fs-7"><%= appliance.serial_number %></span>
               </td>
               <td class="text-end">
-                <% if (current_user.repairer == false) %>
-                <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "badge badge-secondary fw-bold me-1 mb-2", data: {confirm: 'Are you sure?'} %>
-                <% end %>
+                
                 <!-- <button  class="btn btn-secondary btn-sm m-3 col-4">Remove</button> -->
                 <!-- On définit le statut dans Onlinestatus le statut de la machine -->
                 <% status = Onlinestatus.find_by(serial_number: appliance.serial_number) %>
                 <!-- On appelle une partial avec comme argument 'status' -->
                 <%= render "online_status_button", online_status: status %>
+                <% if (current_user.repairer == false) %>
+                <%= link_to remove_path(appliance.id), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-danger', data: {confirm: 'Are you sure you want to remove this appliance?'}} do %>
+                  <span class="svg-icon svg-icon-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24"></rect>
+                        <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
+                        <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"></path>
+                      </g>
+                    </svg>
+                  </span>
+                <% end %>
+                <% end %>
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary', :"data-no-turbolink" => true } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
                   <span class="svg-icon svg-icon-2">

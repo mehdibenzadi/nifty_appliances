@@ -5,9 +5,11 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap py-5">
             <div class="mb-6" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-              <img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="logo-default h-25px h-lg-40px" />
-          </div>
-            <h3 class="text-center mb-0">Welcome back on Nifty</h3>
+              <%= link_to root_path do %>  
+                <img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="logo-default h-25px h-lg-40px" />
+              <% end %>
+            </div>
+            <h3 class="text-center mb-6">Welcome back on Nifty</h3>
             <p class="text-center">Sign in by entering the information below</p>
 						<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">
