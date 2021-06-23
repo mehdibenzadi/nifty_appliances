@@ -58,10 +58,10 @@ License: For each use you must have a valid license purchased only from above li
 									</button>
 									<!--end::Mobile menu toggle-->
 									<!--begin::Logo image-->
-									<a href="landing.html">
-                  	<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty-test.svg" class="logo-default h-25px h-lg-30px" />
-										<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty-dark-test.svg" class="logo-sticky h-20px h-lg-25px" />
-									</a>
+									<%= link_to root_path do %>                
+                  	<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="logo-default h-25px h-lg-40px" />
+										<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="logo-sticky h-20px h-lg-25px" />
+                  <% end %>
 									<!--end::Logo image-->
 								</div>
 								<!--end::Logo-->
@@ -112,7 +112,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Menu wrapper-->
 								<!--begin::Toolbar-->
 								<div class="flex-equal text-end ms-1">
-									<a href="/users/sign_in" class="btn btn-success">Sign In</a>
+									<a href="/users/sign_in" class="btn btn-primary">Sign In</a>
 								</div>
 								<!--end::Toolbar-->
 							</div>
@@ -128,12 +128,12 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Title-->
 							<h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x mb-15">Nifty
 							<br />your
-							<span style="background: linear-gradient(to right, #D090DA 0%, #F5BB5D 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+							<span style="background: linear-gradient(to right, #ff60b2 0%, #c44eff 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
 								<span id="kt_landing_hero_text">appliance's best ally!</span>
 							</span></h1>
 							<!--end::Title-->
 							<!--begin::Action-->
-							<a href="/users/sign_in" class="btn btn-success">Try it right now!</a>
+							<a href="/users/sign_up" class="btn btn-primary">Try it right now, sign-up!</a>
 							<!--end::Action-->
 						</div>
 						<!--end::Heading-->
@@ -1058,9 +1058,9 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Copyright-->
 							<div class="d-flex align-items-center order-2 order-md-1">
 								<!--begin::Logo-->
-								<a href="landing.html">
-									<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty-dark-test.svg" class="h-15px h-md-20px" />
-								</a>
+								<%= link_to root_path do %>  
+									<img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="h-15px h-md-20px" />
+								<% end %>
 								<!--end::Logo image-->
 							</div>
 							<!--end::Copyright-->

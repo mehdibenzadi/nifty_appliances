@@ -4,6 +4,9 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap py-5">
+            <div class="mb-6" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                <img alt="Logo" src="<%= request.base_url + "/" %>assets/media/logos/logo-nifty500.png" class="logo-default h-25px h-lg-40px" />
+            </div>
             <h3 class="text-center mb-9">Welcome to Nifty</h3>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= f.error_notification %>

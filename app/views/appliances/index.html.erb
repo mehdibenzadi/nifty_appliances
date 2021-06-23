@@ -70,15 +70,13 @@ end
               </td>
               <td class="text-end">
                 <% if (current_user.repairer == false) %>
-                <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "btn btn-secondary btn-sm m-3 col-4", data: {confirm: 'Are you sure?'} %>
+                <%= link_to "Remove".html_safe, remove_path(appliance.id), :class => "badge badge-secondary fw-bold me-1 mb-2", data: {confirm: 'Are you sure?'} %>
                 <% end %>
                 <!-- <button  class="btn btn-secondary btn-sm m-3 col-4">Remove</button> -->
                 <!-- On définit le statut dans Onlinestatus le statut de la machine -->
                 <% status = Onlinestatus.find_by(serial_number: appliance.serial_number) %>
                 <!-- On appelle une partial avec comme argument 'status' -->
                 <%= render "online_status_button", online_status: status %>
-              </td>
-              <td class="text-end">
                 <%= link_to appliance_path(appliance), { :class => 'btn btn-sm btn-icon btn-bg-light btn-active-color-primary', :"data-no-turbolink" => true } do %>
                   <!--begin::Svg Icon | path: icons/duotone/Navigation/Arrow-right.svg-->
                   <span class="svg-icon svg-icon-2">
