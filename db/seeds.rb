@@ -16,33 +16,33 @@ user3 = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :pass
 user4 = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
 puts 'Creating appliances...'
-appliance = Appliance.create! :model => 'BOSCH Série 8 Lave-vaisselle', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
+appliance = Appliance.create! :model => 'BOSCH Série 8 Lave-Vaisselle', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
 appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => user1.id, :family => 2
 appliance = Appliance.create! :model => 'BEKO Réfrigérateur', :serial_number => 'LLF07W15', :user_id => user1.id, :family => '3'
-appliance = Appliance.create! :model => 'ARTHUR MARTIN Lave-vaisselle', :serial_number => 'AMEFR345768', :user_id => user1.id, :family => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user2.id, :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '1'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user3.id, :family => '2 '
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '3'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '2'
-appliance = Appliance.create! :model => 'AAZZCC', :serial_number => '1236589', :user_id => user4.id, :family => '3'
+appliance = Appliance.create! :model => 'ARTHUR MARTIN Lave-Vaisselle', :serial_number => 'AMEFR345768', :user_id => user1.id, :family => '1'
+appliance = Appliance.create! :model => 'WHIRLPOOL Lave-Linge Top', :serial_number => 'TDLR623FR/N', :user_id => user2.id, :family => '2'
+appliance = Appliance.create! :model => 'LG Réfrigérateur Américain', :serial_number => 'GSL6681PS', :user_id => user2.id, :family => '3'
+appliance = Appliance.create! :model => 'LG DF Lave-Vaisselle', :serial_number => 'DF425HSSS', :user_id => user3.id, :family => '1'
+appliance = Appliance.create! :model => 'ELECTROLUX Lave-Linge Hublot', :serial_number => 'EW7F3816DB', :user_id => user3.id, :family => '2'
+appliance = Appliance.create! :model => 'HISENSE Lave-Linge Hublot', :serial_number => 'WFQR1014EVAJM', :user_id => user3.id, :family => '2 '
+appliance = Appliance.create! :model => 'HISENSE Réfrigérateur Combiné', :serial_number => 'RB400N4ACD', :user_id => user4.id, :family => '3'
+appliance = Appliance.create! :model => 'ESSENTIELB Lave-Linge Séchant', :serial_number => 'ELS712-2B', :user_id => user4.id, :family => '2'
+appliance = Appliance.create! :model => 'HAIER Réfrigérateur Multi Portes', :serial_number => 'HTF-610DM7', :user_id => user4.id, :family => '3'
 
 puts 'Creating serial numbers...'
 SerialNumber.create!({ value: "SMV8YCX01E" })
 SerialNumber.create!({ value: "BWE71483WFRN" })
 SerialNumber.create!({ value: "LLF07W15" })
-SerialNumber.create!({ value: "1075628" })
-SerialNumber.create!({ value: "9068376" })
-SerialNumber.create!({ value: "9876543" })
-SerialNumber.create!({ value: "2846928" })
-SerialNumber.create!({ value: "1234567" })
-SerialNumber.create!({ value: "7654321" })
-SerialNumber.create!({ value: "1324354" })
-SerialNumber.create!({ value: "7564243" })
-SerialNumber.create!({ value: "0798645" })
-SerialNumber.create!({ value: "0687922" })
+SerialNumber.create!({ value: "LW1075628" })
+SerialNumber.create!({ value: "AMEFR345768" })
+SerialNumber.create!({ value: "TDLR623FR/N" })
+SerialNumber.create!({ value: "GSL6681PS" })
+SerialNumber.create!({ value: "DF425HSSS" })
+SerialNumber.create!({ value: "EW7F3816DB" })
+SerialNumber.create!({ value: "WFQR1014EVAJM" })
+SerialNumber.create!({ value: "RB400N4ACD" })
+SerialNumber.create!({ value: "ELS712-2B" })
+SerialNumber.create!({ value: "HTF-610DM7" })
 
 puts 'Creating Events...'
 Event.create!(event_type: 'primary', value: 'Start Eco 250T/min', occurs_at: Time.current, serial_number: 'SMV8YCX01E')
