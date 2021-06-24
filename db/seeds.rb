@@ -15,6 +15,12 @@ user2 = User.create! :email => 'marylin@gmail.com', :password => 'topsecret', :p
 user3 = User.create! :email => 'joey@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 user4 = User.create! :email => 'lucy@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
 
+puts 'Creating repairers'
+repairer1 = User.create! :email => 'alexandre@gmail.com' :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+repairer2 = User.create! :email => 'julie@gmail.com' :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+repairer3 = User.create! :email => 'marie@gmail.com' :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+repairer4 = User.create! :email => 'josé@gmail.com' :password => 'topsecret', :password_confirmation => 'topsecret', :repairer => true
+
 puts 'Creating appliances...'
 appliance = Appliance.create! :model => 'BOSCH Série 8 Lave-Vaisselle', :serial_number => 'SMV8YCX01E', :user_id => user1.id, :family => 1
 appliance = Appliance.create! :model => 'INDESIT Lave-Linge Hublot', :serial_number => 'BWE71483WFRN', :user_id => user1.id, :family => 2
