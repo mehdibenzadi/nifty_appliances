@@ -113,12 +113,32 @@ end
       type: 'bar',
       height: '250px'
     },
+    yaxis: {
+    labels: {
+      /**
+      * Allows users to apply a custom formatter function to yaxis labels.
+      *
+      * @param { String } value - The generated value of the y-axis tick
+      * @param { index } index of the tick / currently executing iteration in yaxis labels array
+      */
+      formatter: function(val, index) {
+        return val.toFixed(0);
+      }
+    }
+  },
     series: [{
       name: 'Cycles',
-      data: [30,40,35,50,49,60,10,11,13]
+      data: <%= @value_array %>
     }],
+    plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top" // top, center, bottom
+          }
+        }
+      },
     xaxis: {
-      categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      categories: <%= raw(@stringdate_array)  %>
     }
     
   }

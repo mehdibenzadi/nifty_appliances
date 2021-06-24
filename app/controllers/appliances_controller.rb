@@ -40,12 +40,23 @@ class AppliancesController < ApplicationController
       @events = @events << @laststatusevent
       @events = @events.sort_by{|e| e.created_at}.reverse!
     end
-    range = Time.new(3.months.ago.year,3.months.ago.month,1)..Time.now
-    cycles = Event.where(event_type: "cycle", created_at: Time.new(3.months.ago.year,3.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', created_at)").count
-    month_array = (Time.new(3.months.ago.year,3.months.ago.month,1).month..Time.now.month).to_a
-    value_array = [0]*month_array.count
-    cycles.each { |k, v| value_array[month_array.find_index(k.month)] = v }
-    raise
+    # number of months to do the analysis on
+    number_of_month = 12
+    # range to do the analysis on
+    range = Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now
+    # count cycle per month
+    cycles = Event.where(event_type: "cycle", created_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', created_at)").count
+    # month_array = (Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1).month..Time.now.month).to_a
+    # Array of dates
+    date_array = (Date.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Date.today).map{|d| [d.year, d.month]}.uniq
+    # To have O in value for empty months
+    @value_array = [0]*date_array.count
+    # Prepare string value for the graph
+    @stringdate_array = [""]*date_array.count
+    date_array.each_index {|c| @stringdate_array[c] = "#{date_array[c][1]}/#{date_array[c][0]}"}
+
+    # fill the @value_array table with values when different from 0
+    cycles.each { |k, v| @value_array[date_array.find_index{|x| x == [k.year,k.month]}] = v }
   end
 
   def validation
