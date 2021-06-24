@@ -41,7 +41,7 @@ class AppliancesController < ApplicationController
       @events = @events.sort_by{|e| e.created_at}.reverse!
     end
     # number of months to do the analysis on
-    number_of_month = 12
+    number_of_month = 11
     # range to do the analysis on
     range = Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now
     # count cycle per month
