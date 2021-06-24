@@ -28,8 +28,24 @@ class AppliancesController < ApplicationController
   end
 
   def show 
+    # using created_at for now
     @appliance = Appliance.find(params[:id])
-    @events = Event.where(serial_number: @appliance.serial_number).order(occurs_at: :desc).first(10)
+    @laststatusevent = Event.where(serial_number: @appliance.serial_number, event_type: "status").order(created_at: :desc).last
+    if current_user.repairer
+      @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error"]).order(created_at: :desc).first(9)
+      @events = @events << @laststatusevent
+      @events = @events.sort_by{|e| e.created_at}.reverse!
+    else
+      @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error", "discoverable","cycle"]).order(created_at: :desc).first(9)
+      @events = @events << @laststatusevent
+      @events = @events.sort_by{|e| e.created_at}.reverse!
+    end
+    range = Time.new(3.months.ago.year,3.months.ago.month,1)..Time.now
+    cycles = Event.where(event_type: "cycle", created_at: Time.new(3.months.ago.year,3.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', created_at)").count
+    month_array = (Time.new(3.months.ago.year,3.months.ago.month,1).month..Time.now.month).to_a
+    value_array = [0]*month_array.count
+    cycles.each { |k, v| value_array[month_array.find_index(k.month)] = v }
+    raise
   end
 
   def validation
