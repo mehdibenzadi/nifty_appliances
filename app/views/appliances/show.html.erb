@@ -32,7 +32,7 @@
         <table class="row gy-5 g-xl-8">
           <tbody>
             <!--begin::Timeline-->
-			<div class="card card-xxl-stretch w-50 flex-grow-1 flex-shrink-0">
+			<div class="card card-xxl-stretch w-50 flex-shrink-0">
 				<div class="card-header align-items-center border-0 mt-4">
 					<h3 class="card-title align-items-start flex-column">
 						<span class="fw-bolder mb-2 text-dark">Last logs from your appliance Number <%= @appliance.serial_number %></span>
@@ -55,8 +55,9 @@
 				</div>
 			</div>
 		<!--end: Timeline-->
+		<div>
 		<!--begin::Charts-->
-			<div class="card card-xl-stretch mb-xl-8 w-50 flex-grow-1 flex-shrink-0">
+			<div class="card card-xl-stretch mb-xl-8 flex-grow-1 flex-shrink-0">
 				<div class="card-header border-0 pt-5 flex-column">
 					<h3 class="card-title align-items-start flex-column">
 						<span class="card-label fw-bolder fs-3 mb-1">Your monthly cycles</span>
@@ -67,6 +68,21 @@
 				</div>
 			</div>
 			<!--end::Charts-->
+			<!--begin::Repairers List-->
+			<div class="card card-xl-stretch mb-xl-8 flex-grow-1 flex-shrink-0">
+				<div class="card-header border-0 pt-5 flex-column">
+					<h3 class="card-title align-items-start flex-column">
+						<span class="card-label fw-bolder fs-3 mb-1">Your repairers list</span>
+						<span class="text-muted fw-bold fs-7">Revoke accesses to your appliance n°<%= @appliance.serial_number %>.</span>
+					</h3>
+				<div>
+				</div>
+					<div class=""><a href="#" class="btn btn-danger" style='margin: 10px 50px 10px 0px;' data-bs-toggle="modal" data-bs-target="#repairer_revoke_modal">Revoke access to a repairer</a></div>
+				</div>		
+				</div>
+			</div>
+			<!--end::Repairers List-->
+		</div>
 		  </tbody>
         </table>
       </div>
