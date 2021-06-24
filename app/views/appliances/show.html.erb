@@ -11,6 +11,23 @@ def svgtourl(family)
 end
 %>
 
+<%
+def eventtype(event_type)
+  case event_type
+  when "status"
+    "text-info"
+  when "discoverable"
+    "text-success"
+  when "error"
+    "text-danger"
+  when "cycle"
+    "text-primary"
+  else
+    "text-warning"
+  end
+end
+%>
+
 <% flash.each do |type, msg| %>
   <% if (type == "notice") %>
   <div class="alert alert-success alert-dismissible fade show">
@@ -28,69 +45,57 @@ end
 
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
-	<div class="card-header align-items-center border-0 mt-4" style="justify-content: normal;">
-    <img src="<%= svgtourl(@appliance.family) %>" class="mx-5 align-self-center" alt="" style="width: 60px;">
-		<h3 class="card-title align-items-start flex-column">
-			<span class="fw-bolder my-2 text-dark"><%= @appliance.model %>
-        <span class="text-muted fw-bold fs-7 my-2">  -  Serial Number: <%= @appliance.serial_number %></span>
-      </span>
-      <span class="text-muted fw-bold fs-7 my-2">Your device status is currently :   <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.online %>
-        <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold"><%= status == true ? 'Online' : 'Offline' %></span>
-      </span>
-		</h3>
-	</div>
-  <div class="card-header align-items-center border-0 mt-0" style="justify-content: normal;">
-    <div class=""><button type="button" class="btn btn-secondary mx-2"><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button></div>
-		<div class=""><a href="#" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a></div>
-  </div>
-	<div class="tpbutton btn-toolbar">
-		
-	</div>
-    <div content d-flex flex-column flex-column-fluid" id="kt_content_container">
-      <div class="table-responsive d-flex">
-        <table class="row gy-5 g-xl-8">
-          <tbody>
-            <!--begin::Timeline-->
-			<div class="card card-xxl-stretch w-50 flex-grow-1 flex-shrink-0">
-				<div class="card-header align-items-center border-0 mt-4">
-					<h3 class="card-title align-items-start flex-column">
-						<span class="fw-bolder mb-2 text-dark">Last logs from your appliance Number <%= @appliance.serial_number %></span>
-						<span class="text-muted fw-bold fs-7">Cycles,  errors & miscellaneous datas from the past 24 hours.</span>
-					</h3>
-				</div>
-				<div class="card-body pt-5">
-				
-					<div class="timeline-label">
-						<% @events.each do |event| %>
-							<div class="timeline-item">
-								<div class="timeline-label fw-bolder text-gray-800 fs-6"><%= event.occurs_at.strftime('%I:%M') %></div>
-								<div class="timeline-badge">
-									<i class="fa fa-genderless text-<%= event.event_type %> fs-1"></i>
-								</div>
-								<div class="fw-mormal timeline-content text-muted ps-3"><%= event.value %></div>
-							</div>
-						<% end %>
-					</div>
-				</div>
-			</div>
-		<!--end: Timeline-->
-		<!--begin::Charts-->
-			<div class="card card-xl-stretch mb-xl-8 w-50 flex-grow-1 flex-shrink-0">
-				<div class="card-header border-0 pt-5 flex-column">
-					<h3 class="card-title align-items-start flex-column">
-						<span class="card-label fw-bolder fs-3 mb-1">Your monthly cycles</span>
-						<span class="text-muted fw-bold fs-7">Get more informations about your appliance n°<%= @appliance.serial_number %>.</span>
-					</h3>
-				</div>
-					<div class="mixed-widget-10-chart" data-kt-color="primary" style="height: 175px; min-height: 183px;">			
-				</div>
-			</div>
-			<!--end::Charts-->
-		  </tbody>
-        </table>
-      </div>
-      <!-- If current_user.repairer == true alors show render revoke -->
+    <div class="card-header align-items-center border-0 mt-4" style="justify-content: normal;">
+      <img src="<%= svgtourl(@appliance.family) %>" class="mx-5 align-self-center" alt="" style="width: 60px;">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="fw-bolder my-2 text-dark"><%= @appliance.model %>
+          <span class="text-muted fw-bold fs-7 my-2">  -  Serial Number: <%= @appliance.serial_number %></span>
+        </span>
+        <span class="text-muted fw-bold fs-7 my-2">Your device status is currently :   <% status = Onlinestatus.find_by(serial_number: @appliance.serial_number)&.online %>
+          <span class="badge <%= status == true ? 'badge-light-success' : 'badge-light-danger' %> fw-bold"><%= status == true ? 'Online' : 'Offline' %></span>
+        </span>
+      </h3>
     </div>
+    <div class="card-header align-items-center border-0 mt-0" style="justify-content: normal;">
+      <div class=""><button type="button" class="btn btn-secondary mx-2"><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button></div>
+      <div class=""><a href="#" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a></div>
+    </div>
+  </div>
+  <div class="card card-xl-stretch mb-xl-8">
+    <div class="card-header align-items-center border-0 mt-4">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="fw-bolder mb-2 text-dark">Last logs from your appliance Number <%= @appliance.serial_number %></span>
+        <span class="text-muted fw-bold fs-7">Cycles,  errors & miscellaneous datas from the past 24 hours.</span>
+      </h3>
+    </div>
+    <div class="card-body pt-5">
+      <!--begin::Timeline-->
+      <div class="timeline-label">
+        <!--begin::Item-->
+        <% @events.each do |event| %>
+          <div class="timeline-item">
+            <div class="timeline-label fw-bolder text-gray-800 fs-6"><%= event.created_at.strftime('%e/%-m/%Y - %k:%M') %></div>
+            <div class="timeline-badge">
+              <i class="fa fa-genderless <%= eventtype(event.event_type) %> fs-1"></i>
+            </div>
+            <div class="fw-mormal timeline-content text-muted ps-3"><%= event.value %></div>
+          </div>
+        <% end %>
+        <!--end::Item-->
+      </div>
+      <!--end::Timeline-->
+    </div>
+  </div>
+  <div class="card card-xl-stretch mb-xl-8">
+		<!--begin::Charts-->
+      <div class="card-header border-0 pt-5 flex-column">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Your monthly cycles</span>
+          <span class="text-muted fw-bold fs-7">Get more informations about your appliance n°<%= @appliance.serial_number %>.</span>
+        </h3>
+      </div>
+      <div class="mixed-widget-10-chart" data-kt-color="primary" style="height: 250px; min-height: 250px;"></div>
+    <!--end::Charts-->
   </div>
 </div>
 
