@@ -28,8 +28,35 @@ class AppliancesController < ApplicationController
   end
 
   def show 
+    # using created_at for now
     @appliance = Appliance.find(params[:id])
-    @events = Event.where(serial_number: @appliance.serial_number).order(occurs_at: :desc).first(10)
+    @laststatusevent = Event.where(serial_number: @appliance.serial_number, event_type: "status").order(created_at: :desc).last
+    if current_user.repairer
+      @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error"]).order(created_at: :desc).first(9)
+      @events = @events << @laststatusevent
+      @events = @events.sort_by{|e| e.created_at}.reverse!
+    else
+      @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error", "discoverable","cycle"]).order(created_at: :desc).first(9)
+      @events = @events << @laststatusevent
+      @events = @events.sort_by{|e| e.created_at}.reverse!
+    end
+    # number of months to do the analysis on
+    number_of_month = 11
+    # range to do the analysis on
+    range = Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now
+    # count cycle per month
+    cycles = Event.where(event_type: "cycle", created_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', created_at)").count
+    # month_array = (Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1).month..Time.now.month).to_a
+    # Array of dates
+    date_array = (Date.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Date.today).map{|d| [d.year, d.month]}.uniq
+    # To have O in value for empty months
+    @value_array = [0]*date_array.count
+    # Prepare string value for the graph
+    @stringdate_array = [""]*date_array.count
+    date_array.each_index {|c| @stringdate_array[c] = "#{date_array[c][1]}/#{date_array[c][0]}"}
+
+    # fill the @value_array table with values when different from 0
+    cycles.each { |k, v| @value_array[date_array.find_index{|x| x == [k.year,k.month]}] = v }
   end
 
   def validation
