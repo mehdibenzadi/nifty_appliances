@@ -2206,11 +2206,11 @@ var KTWidgets = function () {
 
             options = {
                 series: [{
-                    name: 'Net Profit',
-                    data: [50, 60, 70, 80, 60, 50, 70, 60]
+                    name: 'Number of cycles',
+                    data: [5, 6, 7, 8, 6, 5, 7, 6]
                 }, {
-                    name: 'Revenue',
-                    data: [50, 60, 70, 80, 60, 50, 70, 60]
+                    name: 'Expected cycles',
+                    data: [5, 5, 5, 5, 5, 5, 5, 5]
                 }],
                 chart: {
                     fontFamily: 'inherit',
@@ -2294,7 +2294,7 @@ var KTWidgets = function () {
                     },
                     y: {
                         formatter: function (val) {
-                            return "$" + val + " revenue"
+                            return val + " cycles"
                         }
                     }
                 },
