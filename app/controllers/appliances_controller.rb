@@ -23,7 +23,7 @@ class AppliancesController < ApplicationController
     if current_user.repairer == false
       @appliances = current_user.appliances
     else
-      @appliances = current_user.permitted_appliances
+      @appliances = Appliance.where(id: Permission.pluck(:appliance_id))
     end
   end
 

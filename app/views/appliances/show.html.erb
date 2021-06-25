@@ -45,7 +45,7 @@ end
 
 <div class="col-xl-12">
   <div class="card card-xl-stretch mb-xl-8">
-    <div class="card-header align-items-center border-0 mt-4" style="justify-content: normal;">
+    <div class="card-header align-items-center border-0 my-4" style="justify-content: normal;">
       <img src="<%= svgtourl(@appliance.family) %>" class="mx-5 align-self-center" alt="" style="width: 60px;">
       <h3 class="card-title align-items-start flex-column">
         <span class="fw-bolder my-2 text-dark"><%= @appliance.model %>
@@ -56,10 +56,10 @@ end
         </span>
       </h3>
     </div>
-    <div class="card-header align-items-center border-0 mt-0" style="justify-content: normal;">
+    <!-- <div class="card-header align-items-center border-0 mt-0" style="justify-content: normal;">
       <div class=""><button type="button" class="btn btn-secondary mx-2"><%= link_to root_path do %><span style="color: #000000;">Back to your appliances</span><% end %></button></div>
       <div class=""></div>
-    </div>
+    </div> -->
   </div>
   <div class="card card-xl-stretch mb-xl-8">
     <div class="card-header align-items-center border-0 mt-4">
@@ -88,6 +88,8 @@ end
     </div>
   </div>
   <!--begin::Repairers List-->
+  <% if current_user.repairer? %>
+  <% else %>
   <div class="card card-xl-stretch mb-xl-8 flex-grow-1 flex-shrink-0">
     <div class="card-header align-items-center border-0 mt-4">
       <h3 class="card-title align-items-start flex-column">
@@ -98,6 +100,7 @@ end
     <div class="card-body pt-1">
       <a href="#" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#repairer_add_modal">Grant access to a repairer</a>
     </div>
+    <% if @repairers.count > 0 %>
     <div class="card-body pt-1">
       <div class="table-responsive">
         <!--begin::Table-->
@@ -147,6 +150,7 @@ end
         <!--end::Table-->
       </div>
     </div>
+    <% end %>
   </div>
   <!--end::Repairers List-->
   <div class="card card-xl-stretch mb-xl-8">
@@ -160,6 +164,7 @@ end
       <div id="chart" data-kt-color="info" style="height: 120px;""></div>
     <!--end::Charts-->
   </div>
+  <% end %>
 </div>
 
 <%= render "shared/upgrade_plan_modal" %>
