@@ -33,12 +33,17 @@ class AppliancesController < ApplicationController
     @laststatusevent = Event.where(serial_number: @appliance.serial_number, event_type: "status").order(created_at: :desc).last
     if current_user.repairer
       @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error"]).order(created_at: :desc).first(9)
+      if @laststatusevent
       @events = @events << @laststatusevent
+      end
       @events = @events.sort_by{|e| e.created_at}.reverse!
     else
       @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error", "discoverable","cycle"]).order(created_at: :desc).first(9)
-      @events = @events << @laststatusevent
+      if @laststatusevent
+        @events = @events << @laststatusevent
+      end
       @events = @events.sort_by{|e| e.created_at}.reverse!
+    
     end
     # number of months to do the analysis on
     number_of_month = 11
@@ -58,7 +63,7 @@ class AppliancesController < ApplicationController
     # fill the @value_array table with values when different from 0
     cycles.each { |k, v| @value_array[date_array.find_index{|x| x == [k.year,k.month]}] = v }
 
-    permissions = current_user.permissions
+    permissions = current_user.permissions.where(appliance_id: @appliance.id)
     @repairers = User.where(id: permissions.pluck(:user_id))
   end
 
