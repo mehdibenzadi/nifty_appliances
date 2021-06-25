@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Custom routes
   get '/validation/:serial_number', to: 'appliances#validation'
   get '/remove/:id', to: 'appliances#remove', as: 'remove'
+  get '/destroy/:repairer_id/:appliance_id', to: 'permissions#destroy', as: 'destroy_permission'
 
 
   devise_scope :user do
@@ -31,5 +32,5 @@ Rails.application.routes.draw do
   
   resources :events, only: [:create]
 
-  resources :permissions, only: [:create, :destroy]
+  resources :permissions, only: [:create]
 end

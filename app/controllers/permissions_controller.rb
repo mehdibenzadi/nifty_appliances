@@ -34,6 +34,17 @@ class PermissionsController < ApplicationController
     end
   end
 
+  def destroy
+    @appliance = Appliance.find(params[:appliance_id])
+    if @appliance.user_id = current_user.id
+      permission_remove = Permission.where(appliance_id: params[:appliance_id], user_id: params[:repairer_id])
+      permission_remove.destroy_all
+      redirect_to appliance_path(@appliance)
+    else
+      redirect_to root_path
+    end
+  end
+
 
   private
     def permission_params
