@@ -30,7 +30,7 @@ class AppliancesController < ApplicationController
   def show 
     # using created_at for now
     @appliance = Appliance.find(params[:id])
-    @laststatusevent = Event.where(serial_number: @appliance.serial_number, event_type: "status").order(created_at: :desc).last
+    @laststatusevent = Event.where(serial_number: @appliance.serial_number, event_type: "status").order(created_at: :desc).first
     if current_user.repairer
       @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error"]).order(created_at: :desc).first(9)
       if @laststatusevent
