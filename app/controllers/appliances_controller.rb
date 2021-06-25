@@ -57,6 +57,9 @@ class AppliancesController < ApplicationController
 
     # fill the @value_array table with values when different from 0
     cycles.each { |k, v| @value_array[date_array.find_index{|x| x == [k.year,k.month]}] = v }
+
+    permissions = current_user.permissions
+    @repairers = User.where(id: permissions.pluck(:user_id))
   end
 
   def validation
