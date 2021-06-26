@@ -51,7 +51,7 @@ class AppliancesController < ApplicationController
     range = Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now
     # count cycle per month
 
-    cycles = Event.where(event_type: "cycle", occurs_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', occurs_at)").count
+    cycles = Event.where(event_type: "cycle", serial_number: @appliance.serial_number, occurs_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', occurs_at)").count
     # month_array = (Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1).month..Time.now.month).to_a
     # Array of dates
     date_array = (Date.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Date.today).map{|d| [d.year, d.month]}.uniq
