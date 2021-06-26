@@ -11,10 +11,10 @@ class EventsController < ApplicationController
       :occurs_at => creation_date,
       :serial_number => event_params[:serial_number]
     )
-    if @event.event_type == "status"
+    if (@event.event_type == "status" || @event.event_type == "discoverable")
       @event.occurs_at = DateTime.now()
     end
-    
+
     if @event.save
       process_data(@event)
       head :ok
