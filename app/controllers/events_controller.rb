@@ -14,6 +14,7 @@ class EventsController < ApplicationController
     if @event.event_type == "status"
       @event.occurs_at = DateTime.now()
     end
+    
     if @event.save
       process_data(@event)
       head :ok
