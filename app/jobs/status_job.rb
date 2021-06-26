@@ -3,7 +3,7 @@ class StatusJob < ApplicationJob
 
   def perform(*args)
     Onlinestatus.find_each do |serial|
-      if (serial.online? && ((Time.now.utc - serial.updated_at) > 4 ))
+      if (serial.online? && ((Time.now.utc - serial.updated_at) > 3 ))
         serial.online = false
         serial.save
         OnlinestatusChannel.broadcast_to(
