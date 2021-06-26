@@ -12,7 +12,7 @@
 
 :schedule:
   StatusJob:
-    cron: '*/2 * * * * *'   # Runs once per 2 seconds
+    cron: '*/1 * * * * *'   # Runs once per 2 seconds
     description: "This job will check Online Status every 10 seconds"
 
   DestroyExpiredSerialNumbersJob:
