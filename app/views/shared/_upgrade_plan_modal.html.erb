@@ -38,7 +38,7 @@
         <!--begin::Plans-->
         <div class="d-flex flex-column">
           <%= simple_form_for :permission, url: permissions_path(appliance_id: @appliance.id) do |f| %>
-            <%= f.input :user_email, label: "Enter your repairer email" %>
+            <%= f.input :user_email, label: "Enter your repairer email", required: false %>
           
         </div>
         <!--end::Plans-->
