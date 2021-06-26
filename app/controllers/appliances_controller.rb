@@ -36,13 +36,13 @@ class AppliancesController < ApplicationController
       if @laststatusevent
       @events = @events << @laststatusevent
       end
-      @events = @events.sort_by{|e| e.created_at}.reverse!
+      @events = @events.sort_by{|e| e.occurs_at}.reverse!
     else
       @events = Event.where(serial_number: @appliance.serial_number, event_type: ["error", "discoverable","cycle"]).order(occurs_at: :desc).first(9)
       if @laststatusevent
         @events = @events << @laststatusevent
       end
-      @events = @events.sort_by{|e| e.created_at}.reverse!
+      @events = @events.sort_by{|e| e.occurs_at}.reverse!
     
     end
     # number of months to do the analysis on
@@ -50,7 +50,8 @@ class AppliancesController < ApplicationController
     # range to do the analysis on
     range = Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now
     # count cycle per month
-    cycles = Event.where(event_type: "cycle", occurs_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', created_at)").count
+
+    cycles = Event.where(event_type: "cycle", occurs_at: Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Time.now).group("DATE_TRUNC('month', occurs_at)").count
     # month_array = (Time.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1).month..Time.now.month).to_a
     # Array of dates
     date_array = (Date.new(number_of_month.months.ago.year,number_of_month.months.ago.month,1)..Date.today).map{|d| [d.year, d.month]}.uniq
